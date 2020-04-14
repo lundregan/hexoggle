@@ -1,2 +1,2 @@
 # hexoggle
-Small puzzle game using node.js and phaser
+Small puzzle game using vue.js

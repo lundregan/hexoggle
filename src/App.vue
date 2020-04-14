@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+
+    <h1>Hexaoggle</h1>
+
     <div class="hexagon-div">
       <div class="row">
         <svg height="200" width="174">
@@ -89,6 +92,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.hexagon-div {
+  margin-top: 56px; /* Fixes negative margin given to each row */
 }
 
 .hexagon-svg {

@@ -94,6 +94,24 @@ export default {
         this.hexagons[i][j].fill = 'red';
       }
       
+
+      this.checkWinCondition();
+    },
+
+    checkWinCondition: function(){
+      let win = true;
+      
+      for(let i =0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          if(this.hexagons[i][j].fill == 'red'){
+            win = false;
+          }
+        }
+      }
+
+      if(win == true){
+        alert('Hexoggle');
+      }
     }
   },
 

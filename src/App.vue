@@ -206,6 +206,11 @@ export default {
   margin: 0;
 }
 
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
 .title {
   margin-top: 0px;
 
@@ -220,6 +225,12 @@ export default {
 .svg-viewbox {
   width: 70vw;
   height: 70vh;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 

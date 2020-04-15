@@ -222,20 +222,6 @@ export default {
   height: 70vh;
 }
 
-.row {
-  margin-top: -56px;
-}
-
-.row svg {
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-.hexagon-div {
-  margin-top: 56px; /* Fixes negative margin given to each row */
-
-  padding-top: 20px;
-}
 
 .hexagon-svg {
   fill:grey;

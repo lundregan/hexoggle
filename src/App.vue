@@ -1,11 +1,11 @@
 <template>
   <div id="app">
 
-    <h1 class='title'>Hexoggle</h1>
+    <div class='title-section'>
+      <h1 class='title'>Hexoggle</h1>
+    </div>
 
-    <h3>Color: {{ hexagons[0][0].fill }}</h3>
-
-    <svg viewBox='0 0 1000 1000' class='exa'>
+    <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
       <!-- 1st row -->
       <svg x='200' y='0' v-on:click='changeColor(hexagons[0][0])'>
         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[0][0].fill }" v-on:click='changeColor(0, 0)' />
@@ -188,15 +188,6 @@ export default {
   margin: 0;
 }
 
-.hexagonActive{
-  fill: green;
-}
-
-.exa {
-  width: 70vw;
-  height: 70vh;
-}
-
 .title {
   margin-top: 0px;
 
@@ -208,15 +199,9 @@ export default {
   color:            #c0c0c0;
 }
 
-.hexagon-div {
-  margin-top: 56px; /* Fixes negative margin given to each row */
-
-  padding-top: 20px;
-}
-
-.hexagon-svg {
-  fill:grey;
-  stroke-width:1;
+.svg-viewbox {
+  width: 70vw;
+  height: 70vh;
 }
 
 .row {
@@ -226,5 +211,16 @@ export default {
 .row svg {
   margin-left: 10px;
   margin-top: 10px;
+}
+
+.hexagon-div {
+  margin-top: 56px; /* Fixes negative margin given to each row */
+
+  padding-top: 20px;
+}
+
+.hexagon-svg {
+  fill:grey;
+  stroke-width:1;
 }
 </style>

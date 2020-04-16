@@ -12,7 +12,7 @@
 
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+            <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' v-bind:style="{ fill: hexagon.fill }" v-on:click='changeColor(hexagon)'/>
           </svg>
         </svg>
       </svg>
@@ -30,14 +30,12 @@ export default {
   },
 
   methods: {
-    changeColor: function(i, j){
+    changeColor: function(hex){
       
-      // needs to be updated
-
-      if( this.hexagons[i][j].fill == 'red'){
-        this.hexagons[i][j].fill = 'green';  
+      if( hex.fill == 'red'){
+        hex.fill = 'green';  
       }else{
-        this.hexagons[i][j].fill = 'red';
+        hex.fill = 'red';
       }
       
 

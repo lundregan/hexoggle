@@ -4,76 +4,37 @@
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
     </div>
+    <div id="game">
 
-    <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
-      <!-- 1st row -->
-      <svg x='200' y='0' v-on:click='changeColor(hexagons[0][0])'>
-        <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[0][0].fill }" v-on:click='changeColor(0, 0)' />
-      </svg>
-      <svg x='400' y='0'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[0][1].fill }" v-on:click='changeColor(0, 1)' />
-      </svg>
-      <svg x='600' y='0'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[0][2].fill }" v-on:click='changeColor(0, 2)' />
-      </svg>
+      <!-- SVG Viewbox -->
+      <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
+        <!-- 1st row -->
+        <svg v-for='hexagon in hexagons[0]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;'/>
+        </svg>
 
-      <!-- 2nd row -->
-      <svg x='100' y='175'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[1][0].fill }" v-on:click='changeColor(1, 0)' />
-      </svg>
-      <svg x='300' y='175'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[1][1].fill }" v-on:click='changeColor(1, 1)' />
-      </svg>
-      <svg x='500' y='175'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[1][2].fill }" v-on:click='changeColor(1, 2)' />
-      </svg>
-      <svg x='700' y='175'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[1][3].fill }" v-on:click='changeColor(1, 3)' />
-      </svg>
+        <!-- 2nd row -->
+        <svg v-for='hexagon in hexagons[1]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+        </svg>
 
-      <!-- 3rd row -->
-      <svg x='0' y='350'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[2][0].fill }" v-on:click='changeColor(2, 0)' />
-      </svg>
-      <svg x='200' y='350'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[2][1].fill }" v-on:click='changeColor(2, 1)' />
-      </svg>
-      <svg x='400' y='350'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[2][2].fill }" v-on:click='changeColor(2, 2)' />
-      </svg>
-      <svg x='600' y='350'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[2][3].fill }" v-on:click='changeColor(2, 3)' />
-      </svg>
-      <svg x='800' y='350'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[2][4].fill }" v-on:click='changeColor(2, 4)' />
-      </svg>
+        <!-- 3rd row -->
+        <svg v-for='hexagon in hexagons[2]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+        </svg>
 
-      <!-- 4th row -->
-      <svg x='100' y='525'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[3][0].fill }" v-on:click='changeColor(3, 0)' />
-      </svg>
-      <svg x='300' y='525'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[3][1].fill }" v-on:click='changeColor(3, 1)' />
-      </svg>
-      <svg x='500' y='525'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[3][2].fill }" v-on:click='changeColor(3, 2)' />
-      </svg>
-      <svg x='700' y='525'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[3][3].fill }" v-on:click='changeColor(3, 3)' />
-      </svg>
+        <!-- 4th row -->
+        <svg v-for='hexagon in hexagons[3]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+        </svg>
 
-      <!-- 5th row -->
-      <svg x='200' y='700'>
-        <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[4][0].fill }" v-on:click='changeColor(4, 0)' />
+        <!-- 5th row -->
+        <svg v-for='hexagon in hexagons[4]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+        </svg>
       </svg>
-      <svg x='400' y='700'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[4][1].fill }" v-on:click='changeColor(4, 1)' />
-      </svg>
-      <svg x='600' y='700'>
-         <polygon class='hexagon-svg' points="87,0 174,50 174,150 87,200 0,150 0,50 87,0" v-bind:style="{ fill: hexagons[4][2].fill }" v-on:click='changeColor(4, 2)' />
-      </svg>
-
-    </svg>
+    </div>
+    
   </div>
 </template>
 
@@ -87,6 +48,8 @@ export default {
 
   methods: {
     changeColor: function(i, j){
+      
+      // needs to be updated
 
       if( this.hexagons[i][j].fill == 'red'){
         this.hexagons[i][j].fill = 'green';  
@@ -117,73 +80,120 @@ export default {
 
   data: function() {
     return {
+
+    hexagonData: {
+      points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'
+    },
     
     hexagons: [
       [
+        // 1st row
         {
-          fill: 'green'
+          fill: 'red',
+          x: '200',
+          y: '0'
         },
         {
-          fill: 'green'
+          fill: 'red',
+          x: '400',
+          y: '0'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '600',
+          y: '0'
         }
       ],
       [
+        // 2nd row
         {
-          fill: 'purple'
+          fill: 'red',
+          x: '100',
+          y: '175'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '300',
+          y: '175'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '500',
+          y: '175'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '700',
+          y: '175'
         }
       ],
       [
+        // 3rd row
         {
-          fill: 'purple'
+          fill: 'red',
+          x: '0',
+          y: '350'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '200',
+          y: '350'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '400',
+          y: '350'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '600',
+          y: '350'
         },
         {
-          fill: 'green'
+          fill: 'red',
+          x: '800',
+          y: '350'
         }
       ],
       [
+        // 4th row
         {
-          fill: 'purple'
+          fill: 'red',
+          x: '100',
+          y: '525'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '300',
+          y: '525'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '500',
+          y: '525'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '700',
+          y: '525'
         }
       ],
       [
+        //  5th row
         {
-          fill: 'green'
+          fill: 'red',
+          x: '200',
+          y: '700'
         },
         {
-          fill: 'green'
+          fill: 'red',
+          x: '400',
+          y: '700'
         },
         {
-          fill: 'red'
+          fill: 'red',
+          x: '600',
+          y: '700'
         }
       ]
     ]
@@ -211,6 +221,13 @@ export default {
   height: 100vh;
 }
 
+#game{
+  width: 100%;
+  height: 100%;
+  
+  background-color: #474747;
+}
+
 .title {
   margin-top: 0px;
 
@@ -219,7 +236,7 @@ export default {
   font-size: 3rem;
 
   background-color: #2e2e2e;
-  color:            #c0c0c0;
+  color:            #dfdfdf;
 }
 
 .svg-viewbox {

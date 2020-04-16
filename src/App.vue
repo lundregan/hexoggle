@@ -8,29 +8,12 @@
 
       <!-- SVG Viewbox -->
       <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
-        <!-- 1st row -->
-        <svg v-for='hexagon in hexagons[0]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;'/>
-        </svg>
+        
 
-        <!-- 2nd row -->
-        <svg v-for='hexagon in hexagons[1]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
-        </svg>
-
-        <!-- 3rd row -->
-        <svg v-for='hexagon in hexagons[2]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
-        </svg>
-
-        <!-- 4th row -->
-        <svg v-for='hexagon in hexagons[3]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
-        </svg>
-
-        <!-- 5th row -->
-        <svg v-for='hexagon in hexagons[4]' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-          <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+        <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
+          <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+            <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' />
+          </svg>
         </svg>
       </svg>
     </div>

@@ -12,7 +12,7 @@
 
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg'  v-bind:points='hexagonData.points' style='fill: red;' v-bind:style="{ fill: hexagon.fill }" v-on:click='changeColor(hexagon)'/>
+            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' style='fill: red;' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
           </svg>
         </svg>
       </svg>
@@ -30,6 +30,12 @@ export default {
   },
 
   methods: {
+    hexagonClicked: function(hex){
+      if(hex.type == 'normal'){
+        this.changeColor(hex);
+      }
+    },
+
     changeColor: function(hex){
       
       if( hex.fill == 'red'){
@@ -37,7 +43,6 @@ export default {
       }else{
         hex.fill = 'red';
       }
-      
 
       this.checkWinCondition();
     },
@@ -72,7 +77,8 @@ export default {
         {
           fill: 'red',
           x: '200',
-          y: '0'
+          y: '0',
+          type: 'normal'
         },
         {
           fill: 'red',

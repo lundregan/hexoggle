@@ -12,7 +12,7 @@
 
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' style='fill: red;' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
+            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
           </svg>
         </svg>
       </svg>
@@ -83,12 +83,14 @@ export default {
         {
           fill: 'red',
           x: '400',
-          y: '0'
+          y: '0',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '600',
-          y: '0'
+          y: '0',
+          type: 'normal'
         }
       ],
       [
@@ -96,22 +98,26 @@ export default {
         {
           fill: 'red',
           x: '100',
-          y: '175'
+          y: '175',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '300',
-          y: '175'
+          y: '175',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '500',
-          y: '175'
+          y: '175',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '700',
-          y: '175'
+          y: '175',
+          type: 'normal'
         }
       ],
       [
@@ -119,27 +125,32 @@ export default {
         {
           fill: 'red',
           x: '0',
-          y: '350'
+          y: '350',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '200',
-          y: '350'
+          y: '350',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '400',
-          y: '350'
+          y: '350',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '600',
-          y: '350'
+          y: '350',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '800',
-          y: '350'
+          y: '350',
+          type: 'normal'
         }
       ],
       [
@@ -147,22 +158,26 @@ export default {
         {
           fill: 'red',
           x: '100',
-          y: '525'
+          y: '525',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '300',
-          y: '525'
+          y: '525',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '500',
-          y: '525'
+          y: '525',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '700',
-          y: '525'
+          y: '525',
+          type: 'normal'
         }
       ],
       [
@@ -170,17 +185,20 @@ export default {
         {
           fill: 'red',
           x: '200',
-          y: '700'
+          y: '700',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '400',
-          y: '700'
+          y: '700',
+          type: 'normal'
         },
         {
           fill: 'red',
           x: '600',
-          y: '700'
+          y: '700',
+          type: 'normal'
         }
       ]
     ]

@@ -8,10 +8,10 @@
 
       <aside class='level-nav'>
         <ul class='world-list level-nav-ul'>
-          <li v-for='world in worlds' :key='world.id'>
+          <li v-for='world in worlds' :key='world.id' v-on:click='openWorldLevels(world)'>
             <p> {{world.name}} </p>
 
-            <ul class='level-list level-nav-ul'>
+            <ul class='level-list level-nav-ul' v-if='world.open'>
               <li v-for='level in world.levels' :key='level.id'> {{ level.name }} </li>
             </ul>
           </li>
@@ -44,6 +44,10 @@ export default {
       if(hex.type == 'normal'){
         this.changeColor(hex);
       }
+    },
+
+    openWorldLevels: function(world){
+      world.open = !world.open;
     },
 
     changeColor: function(hex){
@@ -216,6 +220,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
+          open: true,
           levels: [
             {
               name: '1 - 1'
@@ -230,6 +235,7 @@ export default {
           ]
         },{
           name: 'world 2',
+          open: false,
           levels: [
             {
               name: '2 - 1'

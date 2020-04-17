@@ -38,6 +38,9 @@
 <script>
   import level_1_0 from './levels/1-0.json';
   import level_1_1 from './levels/1-1.json';
+  import level_1_2 from './levels/1-2.json';
+  import level_2_1 from './levels/2-1.json';
+  import level_2_2 from './levels/2-2.json';
 
 export default {
 
@@ -255,7 +258,8 @@ export default {
               data: level_1_1
             },
             {
-              name: '1-1'
+              name: '1-2',
+              data: level_1_2
             }
 
           ]
@@ -264,10 +268,12 @@ export default {
           open: false,
           levels: [
             {
-              name: '2-1'
+              name: '2-1',
+              data: level_2_1
             },
             {
-              name: '2-2'
+              name: '2-2',
+              data: level_2_2
             }
           ]
         }

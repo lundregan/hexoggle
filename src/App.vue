@@ -10,8 +10,8 @@
         <p class='level-select-title'>Level Select</p>
 
         <ul class='world-list level-nav-ul'>
-          <li class='world' v-for='world in worlds' :key='world.id' v-on:click='openWorldLevels(world)'>
-            <p> {{world.name}} </p>
+          <li class='world' v-for='world in worlds' :key='world.id'>
+            <p class='world-title' v-on:click='openWorldLevels(world)'> {{world.name}} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
               <li v-for='level in world.levels' :key='level.id'> {{ level.name }} </li>

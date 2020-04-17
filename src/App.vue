@@ -14,7 +14,9 @@
             <p class='world-title' v-on:click='openWorldLevels(world)'> {{world.name}} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
-              <li v-for='level in world.levels' :key='level.id'> {{ level.name }} </li>
+              <li v-for='level in world.levels' :key='level.id'> 
+                <p class='level-title' v-on:click='loadLevelData(level.data)'> {{ level.name }} </p> 
+                </li>
             </ul>
           </li>
         </ul>
@@ -34,8 +36,11 @@
 </template>
 
 <script>
+  import level_1_0 from './levels/1-0.json';
+  import level_1_1 from './levels/1-1.json';
 
 export default {
+
   name: 'App',
   
   components: {
@@ -46,10 +51,27 @@ export default {
       if(hex.type == 'normal'){
         this.changeColor(hex);
       }
+      if(hex.type == 'activated'){
+        this.changeColor(hex);
+      }
     },
 
     openWorldLevels: function(world){
       world.open = !world.open;
+    },
+
+    loadLevelData: function(json){
+      console.log('laodingLevel');
+      json.forEach(item => { 
+        this.loadHex(item.i, item.j, item.fill, item.type); 
+      });
+    },
+
+    loadHex: function(i, j, fill, type){
+      console.log(i + ' ' + j + ' ' + fill + ' ' + type);
+
+      this.hexagons[i][j].fill = fill;
+      this.hexagons[i][j].type = type;
     },
 
     changeColor: function(hex){
@@ -225,10 +247,12 @@ export default {
           open: false,
           levels: [
             {
-              name: '1-0'
+              name: '1-0',
+              data: level_1_0
             },
             {
-              name: '1-1'
+              name: '1-1',
+              data: level_1_1
             },
             {
               name: '1-1'

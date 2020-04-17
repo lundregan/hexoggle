@@ -223,13 +223,13 @@ export default {
           open: true,
           levels: [
             {
-              name: '1 - 1'
+              name: '1-0'
             },
             {
-              name: '1 - 2'
+              name: '1-1'
             },
             {
-              name: '1 - 3'
+              name: '1-1'
             }
 
           ]
@@ -238,10 +238,10 @@ export default {
           open: false,
           levels: [
             {
-              name: '2 - 1'
+              name: '2-1'
             },
             {
-              name: '2 - 2'
+              name: '2-2'
             }
           ]
         }

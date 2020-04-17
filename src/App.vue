@@ -6,10 +6,20 @@
     </div>
     <div id="game">
 
+      <aside class='level-nav'>
+        <ul class='world-list level-nav-ul'>
+          <li v-for='world in worlds' :key='world.id'>
+            <p> {{world.name}} </p>
+
+            <ul class='level-list level-nav-ul'>
+              <li v-for='level in world.levels' :key='level.id'> {{ level.name }} </li>
+            </ul>
+          </li>
+        </ul>
+      </aside>
+
       <!-- SVG Viewbox -->
       <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
-        
-
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
             <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
@@ -67,141 +77,169 @@ export default {
   data: function() {
     return {
 
-    hexagonData: {
-      points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'
-    },
-    
-    hexagons: [
-      [
-        // 1st row
-        {
-          fill: 'red',
-          x: '200',
-          y: '0',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '400',
-          y: '0',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '600',
-          y: '0',
-          type: 'normal'
-        }
+      hexagonData: {
+        points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'
+      },
+      
+      hexagons: [
+        [
+          // 1st row
+          {
+            fill: 'red',
+            x: '200',
+            y: '0',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '400',
+            y: '0',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '600',
+            y: '0',
+            type: 'normal'
+          }
+        ],
+        [
+          // 2nd row
+          {
+            fill: 'red',
+            x: '100',
+            y: '175',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '300',
+            y: '175',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '500',
+            y: '175',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '700',
+            y: '175',
+            type: 'normal'
+          }
+        ],
+        [
+          // 3rd row
+          {
+            fill: 'red',
+            x: '0',
+            y: '350',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '200',
+            y: '350',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '400',
+            y: '350',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '600',
+            y: '350',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '800',
+            y: '350',
+            type: 'normal'
+          }
+        ],
+        [
+          // 4th row
+          {
+            fill: 'red',
+            x: '100',
+            y: '525',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '300',
+            y: '525',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '500',
+            y: '525',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '700',
+            y: '525',
+            type: 'normal'
+          }
+        ],
+        [
+          //  5th row
+          {
+            fill: 'red',
+            x: '200',
+            y: '700',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '400',
+            y: '700',
+            type: 'normal'
+          },
+          {
+            fill: 'red',
+            x: '600',
+            y: '700',
+            type: 'normal'
+          }
+        ]
       ],
-      [
-        // 2nd row
+
+      worlds: [
         {
-          fill: 'red',
-          x: '100',
-          y: '175',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '300',
-          y: '175',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '500',
-          y: '175',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '700',
-          y: '175',
-          type: 'normal'
-        }
-      ],
-      [
-        // 3rd row
-        {
-          fill: 'red',
-          x: '0',
-          y: '350',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '200',
-          y: '350',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '400',
-          y: '350',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '600',
-          y: '350',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '800',
-          y: '350',
-          type: 'normal'
-        }
-      ],
-      [
-        // 4th row
-        {
-          fill: 'red',
-          x: '100',
-          y: '525',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '300',
-          y: '525',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '500',
-          y: '525',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '700',
-          y: '525',
-          type: 'normal'
-        }
-      ],
-      [
-        //  5th row
-        {
-          fill: 'red',
-          x: '200',
-          y: '700',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '400',
-          y: '700',
-          type: 'normal'
-        },
-        {
-          fill: 'red',
-          x: '600',
-          y: '700',
-          type: 'normal'
+          name: 'World 1',
+          levels: [
+            {
+              name: '1 - 1'
+            },
+            {
+              name: '1 - 2'
+            },
+            {
+              name: '1 - 3'
+            }
+
+          ]
+        },{
+          name: 'world 2',
+          levels: [
+            {
+              name: '2 - 1'
+            },
+            {
+              name: '2 - 2'
+            }
+          ]
         }
       ]
-    ]
     
     };
   }
@@ -242,6 +280,17 @@ export default {
 
   background-color: #2e2e2e;
   color:            #dfdfdf;
+}
+
+.level-nav {
+  text-align: left;
+  background-color: darkgrey;
+  width: 10%;
+  height: 100%;
+}
+
+.level-nav-ul {
+  list-style-type: none;
 }
 
 .svg-viewbox {

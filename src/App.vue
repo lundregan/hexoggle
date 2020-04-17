@@ -7,8 +7,10 @@
     <div id="game">
 
       <aside class='level-nav'>
+        <p class='level-select-title'>Level Select</p>
+
         <ul class='world-list level-nav-ul'>
-          <li v-for='world in worlds' :key='world.id' v-on:click='openWorldLevels(world)'>
+          <li class='world' v-for='world in worlds' :key='world.id' v-on:click='openWorldLevels(world)'>
             <p> {{world.name}} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
@@ -220,7 +222,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
-          open: true,
+          open: false,
           levels: [
             {
               name: '1-0'
@@ -234,7 +236,7 @@ export default {
 
           ]
         },{
-          name: 'world 2',
+          name: 'World 2',
           open: false,
           levels: [
             {
@@ -295,8 +297,38 @@ export default {
   height: 100%;
 }
 
+.level-select-title {
+  
+  padding-top: 10px;
+  padding-bottom: 25px;
+  
+  font-size: 2rem;
+  text-align: center;
+  
+  background-color: #3a3a3a;
+  color: #FFFFFF;
+}
+
 .level-nav-ul {
   list-style-type: none;
+}
+
+.world-list {
+  padding-left: 0px;
+}
+
+.world {
+  padding: 10px 0 10px 0;
+  
+  margin-left: none;
+
+  border-top: 2px solid black;
+
+  text-align: center;
+  font-size: 1.5rem;
+
+  background-color: #3a3a3a;
+  color: #ffffff;
 }
 
 .svg-viewbox {

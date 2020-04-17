@@ -64,7 +64,16 @@ export default {
     },
 
     loadLevelData: function(json){
-      console.log('laodingLevel');
+      // Default set for every hexagon , purple = no hex data
+      for(let i = 0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          this.hexagons[i][j].type = 'noHexData';
+          this.hexagons[i][j].fill = 'purple';
+        } 
+      }
+
+
+      // load each hex element
       json.forEach(item => { 
         this.loadHex(item.i, item.j, item.fill, item.type); 
       });

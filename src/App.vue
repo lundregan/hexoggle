@@ -54,7 +54,7 @@ export default {
     hexagonClicked: function(hex){
       this.changeColor(hex);
 
-      if(hex.type == 'neighbors'){
+      if(hex.type == 'normal'){
         this.toggleNeighbors(hex.id);
       }
     },
@@ -65,8 +65,14 @@ export default {
       let arrayPos = this.getArrayPosition(id);
 
       let upRight = [];
+      console.log(arrayPos[0]);
       upRight.push(arrayPos[0] - 1);
-      upRight.push(arrayPos[1]);
+
+      if(arrayPos[0] <= 2){
+        upRight.push(arrayPos[1]);
+      }else {
+        upRight.push(arrayPos[1] + 1);
+      }
 
       this.toggleHex(upRight);
 

@@ -27,6 +27,7 @@
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
             <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
+            <circle v-if='hexagon.type == "neighbors"' cx="25" cy="75" r="20" stroke="red" fill="black" stroke-width="5"/>
           </svg>
         </svg>
       </svg>
@@ -51,12 +52,45 @@ export default {
 
   methods: {
     hexagonClicked: function(hex){
-      if(hex.type == 'normal'){
-        this.changeColor(hex);
+      this.changeColor(hex);
+
+      if(hex.type == 'neighbors'){
+        this.toggleNeighbors(hex.id);
       }
-      if(hex.type == 'activated'){
-        this.changeColor(hex);
+    },
+
+    toggleNeighbors: function(id){
+      console.log(id);
+
+      let arrayPos = this.getArrayPosition(id);
+
+      let upRight = [];
+      upRight.push(arrayPos[0] - 1);
+      upRight.push(arrayPos[1]);
+
+      this.toggleHex(upRight);
+
+    },
+
+    toggleHex: function(pos){
+      let hexagon = this.hexagons[pos[0]][pos[1]];
+      this.changeColor(hexagon);    
+    },
+
+    getArrayPosition: function(id){
+      let arrayPosition = [0, 0]
+      
+      for(let i = 0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          if(this.hexagons[i][j].id == id){
+            console.log('Matching ID');
+            arrayPosition[0] = i;
+            arrayPosition[1] = j;
+          }
+        }
       }
+      
+      return arrayPosition;
     },
 
     openWorldLevels: function(world){
@@ -125,18 +159,21 @@ export default {
         [
           // 1st row
           {
+            id: 0,
             fill: 'red',
             x: '200',
             y: '0',
             type: 'normal'
           },
           {
+            id: 1,
             fill: 'red',
             x: '400',
             y: '0',
             type: 'normal'
           },
           {
+            id: 2,
             fill: 'red',
             x: '600',
             y: '0',
@@ -146,24 +183,28 @@ export default {
         [
           // 2nd row
           {
+            id: 3,
             fill: 'red',
             x: '100',
             y: '175',
             type: 'normal'
           },
           {
+            id: 4,
             fill: 'red',
             x: '300',
             y: '175',
             type: 'normal'
           },
           {
+            id: 5,
             fill: 'red',
             x: '500',
             y: '175',
-            type: 'normal'
+            type: 'neighbors'
           },
           {
+            id: 6,
             fill: 'red',
             x: '700',
             y: '175',
@@ -173,30 +214,38 @@ export default {
         [
           // 3rd row
           {
+            id: 7,
             fill: 'red',
             x: '0',
             y: '350',
             type: 'normal'
           },
           {
+            id: 8,
             fill: 'red',
             x: '200',
             y: '350',
             type: 'normal'
           },
           {
+            
+            id: 9,
             fill: 'red',
             x: '400',
             y: '350',
             type: 'normal'
           },
           {
+            
+            id: 10,
             fill: 'red',
             x: '600',
             y: '350',
             type: 'normal'
           },
           {
+            
+            id: 11,
             fill: 'red',
             x: '800',
             y: '350',
@@ -206,24 +255,29 @@ export default {
         [
           // 4th row
           {
+            id: 12,
             fill: 'red',
             x: '100',
             y: '525',
             type: 'normal'
           },
           {
+            id: 13,
             fill: 'red',
             x: '300',
             y: '525',
             type: 'normal'
           },
           {
+            id: 14,
             fill: 'red',
             x: '500',
             y: '525',
             type: 'normal'
           },
           {
+            
+            id: 15,
             fill: 'red',
             x: '700',
             y: '525',
@@ -233,18 +287,21 @@ export default {
         [
           //  5th row
           {
+            id: 16,
             fill: 'red',
             x: '200',
             y: '700',
             type: 'normal'
           },
           {
+            id: 17,
             fill: 'red',
             x: '400',
             y: '700',
             type: 'normal'
           },
           {
+            id: 18,
             fill: 'red',
             x: '600',
             y: '700',

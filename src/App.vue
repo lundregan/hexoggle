@@ -74,8 +74,21 @@ export default {
         upRight.push(arrayPos[1] + 1);
       }
 
-      this.toggleHex(upRight);
+      this.isValidHex(upRight);
 
+      
+      if(this.isValidHex(upRight)){
+        this.toggleHex(upRight);
+      }
+
+    },
+
+    isValidHex: function(pos){
+      if(this.hexagons[pos[0]][pos[1]]){
+        return true;
+      }else{
+        return false;
+      }
     },
 
     toggleHex: function(pos){

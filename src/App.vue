@@ -14,7 +14,7 @@
             <p class='world-title' v-on:click='openWorldLevels(world)'> {{world.name}} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
-              <li v-for='level in world.levels' :key='level.id'> 
+              <li class='level' v-for='level in world.levels' :key='level.id'> 
                 <p class='level-title' v-on:click='loadLevelData(level.data)'> {{ level.name }} </p> 
                 </li>
             </ul>
@@ -457,14 +457,18 @@ export default {
   padding-bottom: 10px;
 
   font-size: 3rem;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
 
-  background-color: #2e2e2e;
-  color:            #dfdfdf;
+  background-color: #121212;
+  color:            #FF7A00;
 }
 
 .level-nav {
   text-align: left;
-  background-color: darkgrey;
+  background-color: #121212;
+  opacity: 0.7; 
   width: 10%;
   height: 100%;
 }
@@ -476,8 +480,7 @@ export default {
   
   font-size: 2rem;
   text-align: center;
-  
-  background-color: #3a3a3a;
+
   color: #FFFFFF;
 }
 
@@ -489,18 +492,27 @@ export default {
   padding-left: 0px;
 }
 
+.level-list {
+  padding-left: 0px;
+}
+
 .world {
+  margin: 10px 0 10px 0;
   padding: 10px 0 10px 0;
   
   margin-left: none;
 
-  border-top: 2px solid black;
 
   text-align: center;
   font-size: 1.5rem;
 
   background-color: #3a3a3a;
   color: #ffffff;
+}
+
+.level {
+  margin: 10px 0 10px 0;
+  background-color: #FA4E5D;
 }
 
 .svg-viewbox {

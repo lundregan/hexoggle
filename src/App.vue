@@ -60,35 +60,85 @@ export default {
     },
 
     toggleNeighbors: function(id){
-      console.log(id);
+      console.log('id: ' + id);
 
-      let arrayPos = this.getArrayPosition(id);
-
-      let upRight = [];
-      console.log(arrayPos[0]);
-      upRight.push(arrayPos[0] - 1);
-
-      if(arrayPos[0] <= 2){
-        upRight.push(arrayPos[1]);
-      }else {
-        upRight.push(arrayPos[1] + 1);
+      let upRight = this.getArrayPosition(id);
+      upRight[0] -= 1;
+      if(upRight[0] >= 2){
+        upRight[1] += 1;
       }
 
-      this.isValidHex(upRight);
+      let upLeft = this.getArrayPosition(id);
+      upLeft[0] -= 1;
+      upLeft[1] -= 1;
+      if(upLeft[0] >= 2){
+        upLeft[1] += 1;
+      }
 
+      let left = this.getArrayPosition(id);
+      left[1] -= 1;
+
+      let right = this.getArrayPosition(id);
+      right[1] += 1;
+
+      let downRight = this.getArrayPosition(id);
+      downRight[0] += 1;
+      if(downRight[0] <= 2){
+        downRight[1] += 1;
+      }
       
-      if(this.isValidHex(upRight)){
-        this.toggleHex(upRight);
+
+      let downLeft = this.getArrayPosition(id);
+      downLeft[0] += 1;
+      downLeft[1] -= 1;
+      if(downLeft[0] <= 2){
+        downLeft[1] += 1;
       }
 
+      // Check if hexs are valid, if so toggle them
+      if(this.isValidHex(upRight[0], upRight[1])){
+        this.toggleHex([upRight[0], upRight[1]]);
+      }
+      if(this.isValidHex(upLeft[0], upLeft[1])){
+        this.toggleHex([upLeft[0], upLeft[1]]);
+      }
+      if(this.isValidHex(left[0], left[1])){
+        this.toggleHex([left[0], left[1]]);
+      }
+      if(this.isValidHex(right[0], right[1])){
+        this.toggleHex([right[0], right[1]]);
+      }
+      if(this.isValidHex(downRight[0], downRight[1])){
+        this.toggleHex([downRight[0], downRight[1]]);
+      }
+      if(this.isValidHex(downLeft[0], downLeft[1])){
+        this.toggleHex([downLeft[0], downLeft[1]]);
+      }
     },
 
-    isValidHex: function(pos){
-      if(this.hexagons[pos[0]][pos[1]]){
-        return true;
-      }else{
+    isValidHex: function(x, y){
+      if(x < 0 || x > 4){
         return false;
       }
+      if(y < 0 || y > 4){
+        return false;
+      }
+      
+      if(x == 0 && y > 2){
+        return false;
+      }
+      if(x == 1 && y > 3){
+        return false;
+      }
+      if(x == 3 && y > 3){
+        return false;
+      }
+      if(x == 4 && y > 2){
+        return false;
+      }
+
+      console.log('valid hex')
+      return true;
     },
 
     toggleHex: function(pos){

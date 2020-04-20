@@ -51,16 +51,123 @@ export default {
   },
 
   methods: {
+    // -- Game Methods --
+    checkWinCondition: function(){
+      let win = true;
+      
+      for(let i =0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          if(this.hexagons[i][j].fill == 'red'){
+            win = false;
+          }
+        }
+      }
+
+      if(win == true){
+        alert('Hexoggle');
+      }
+    },
+
+
+
+    // -- Hexagon Methods --
     hexagonClicked: function(hex){
       this.changeColor(hex);
 
-      if(hex.type == 'normal'){
+      if(hex.type == 'neighbors'){
         this.toggleNeighbors(hex.id);
       }
     },
 
+    toggleHex: function(pos){
+      let hexagon = this.hexagons[pos[0]][pos[1]];
+      this.changeColor(hexagon);    
+    },    
+
+    changeColor: function(hex){
+      
+      if( hex.fill == 'red'){
+        hex.fill = 'green';  
+      }else{
+        hex.fill = 'red';
+      }
+
+      this.checkWinCondition();
+    },
+
+    getArrayPosition: function(id){
+      let arrayPosition = [0, 0]
+      
+      for(let i = 0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          if(this.hexagons[i][j].id == id){
+            console.log('Matching ID');
+            arrayPosition[0] = i;
+            arrayPosition[1] = j;
+          }
+        }
+      }
+      
+      return arrayPosition;
+    },
+
+    isValidHex: function(x, y){
+      if(x < 0 || x > 4){
+        return false;
+      }
+      if(y < 0 || y > 4){
+        return false;
+      }
+      
+      if(x == 0 && y > 2){
+        return false;
+      }
+      if(x == 1 && y > 3){
+        return false;
+      }
+      if(x == 3 && y > 3){
+        return false;
+      }
+      if(x == 4 && y > 2){
+        return false;
+      }
+
+      return true;
+    },
+
+
+
+    // -- Loading worlds, levels, and hexs --
+    openWorldLevels: function(world){
+      world.open = !world.open;
+    },
+
+    loadLevelData: function(json){
+      // Default set for every hexagon , purple = no hex data
+      for(let i = 0; i < this.hexagons.length; i++){
+        for(let j = 0; j < this.hexagons[i].length; j++){
+          this.hexagons[i][j].type = 'noHexData';
+          this.hexagons[i][j].fill = 'purple';
+        } 
+      }
+
+      // load each hex element
+      json.forEach(item => { 
+        this.loadHex(item.i, item.j, item.fill, item.type); 
+      });
+    },
+
+    loadHex: function(i, j, fill, type){
+      console.log(i + ' ' + j + ' ' + fill + ' ' + type);
+
+      this.hexagons[i][j].fill = fill;
+      this.hexagons[i][j].type = type;
+    },
+
+
+
+    // -- Hexagon type behaviours --
     toggleNeighbors: function(id){
-      console.log('id: ' + id);
 
       let upRight = this.getArrayPosition(id);
       upRight[0] -= 1;
@@ -87,7 +194,6 @@ export default {
         downRight[1] += 1;
       }
       
-
       let downLeft = this.getArrayPosition(id);
       downLeft[0] += 1;
       downLeft[1] -= 1;
@@ -115,107 +221,8 @@ export default {
         this.toggleHex([downLeft[0], downLeft[1]]);
       }
     },
-
-    isValidHex: function(x, y){
-      if(x < 0 || x > 4){
-        return false;
-      }
-      if(y < 0 || y > 4){
-        return false;
-      }
-      
-      if(x == 0 && y > 2){
-        return false;
-      }
-      if(x == 1 && y > 3){
-        return false;
-      }
-      if(x == 3 && y > 3){
-        return false;
-      }
-      if(x == 4 && y > 2){
-        return false;
-      }
-
-      console.log('valid hex')
-      return true;
-    },
-
-    toggleHex: function(pos){
-      let hexagon = this.hexagons[pos[0]][pos[1]];
-      this.changeColor(hexagon);    
-    },
-
-    getArrayPosition: function(id){
-      let arrayPosition = [0, 0]
-      
-      for(let i = 0; i < this.hexagons.length; i++){
-        for(let j = 0; j < this.hexagons[i].length; j++){
-          if(this.hexagons[i][j].id == id){
-            console.log('Matching ID');
-            arrayPosition[0] = i;
-            arrayPosition[1] = j;
-          }
-        }
-      }
-      
-      return arrayPosition;
-    },
-
-    openWorldLevels: function(world){
-      world.open = !world.open;
-    },
-
-    loadLevelData: function(json){
-      // Default set for every hexagon , purple = no hex data
-      for(let i = 0; i < this.hexagons.length; i++){
-        for(let j = 0; j < this.hexagons[i].length; j++){
-          this.hexagons[i][j].type = 'noHexData';
-          this.hexagons[i][j].fill = 'purple';
-        } 
-      }
-
-
-      // load each hex element
-      json.forEach(item => { 
-        this.loadHex(item.i, item.j, item.fill, item.type); 
-      });
-    },
-
-    loadHex: function(i, j, fill, type){
-      console.log(i + ' ' + j + ' ' + fill + ' ' + type);
-
-      this.hexagons[i][j].fill = fill;
-      this.hexagons[i][j].type = type;
-    },
-
-    changeColor: function(hex){
-      
-      if( hex.fill == 'red'){
-        hex.fill = 'green';  
-      }else{
-        hex.fill = 'red';
-      }
-
-      this.checkWinCondition();
-    },
-
-    checkWinCondition: function(){
-      let win = true;
-      
-      for(let i =0; i < this.hexagons.length; i++){
-        for(let j = 0; j < this.hexagons[i].length; j++){
-          if(this.hexagons[i][j].fill == 'red'){
-            win = false;
-          }
-        }
-      }
-
-      if(win == true){
-        alert('Hexoggle');
-      }
-    }
   },
+
 
   data: function() {
     return {

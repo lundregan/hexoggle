@@ -15,7 +15,7 @@
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
               <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
-                <p class='level-title' v-on:click='loadLevelData(level.data)'> {{ level.name }} </p> 
+                <p class='level-title' v-on:click='changeLevel(level);'> {{ level.name }} </p> 
                 </li>
             </ul>
           </li>
@@ -51,6 +51,7 @@ export default {
   },
 
   methods: {
+
     // -- Game Methods --
     checkWinCondition: function(){
       let win = true;
@@ -65,9 +66,18 @@ export default {
 
       if(win == true){
         alert('Hexoggle');
+        this.gameState.currentLevel.completed = true;
       }
     },
 
+    changeLevel: function(level){
+      this.loadLevelData(level.data);
+      this.setCurrentLevel(level);
+    },
+
+    setCurrentLevel: function(level){
+      this.gameState.currentLevel = level;
+    },
 
 
     // -- Hexagon Methods --
@@ -226,6 +236,9 @@ export default {
 
   data: function() {
     return {
+      gameState: {
+        currentLevel: 'Null'
+      },
 
       hexagonData: {
         points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'

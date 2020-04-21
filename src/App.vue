@@ -50,6 +50,10 @@ export default {
   components: {
   },
 
+  created: function(){
+    this.gameState.currentLevel = this.worlds[0].levels[0]
+  },
+
   methods: {
 
     // -- Game Methods --
@@ -87,12 +91,14 @@ export default {
       if(hex.type == 'neighbors'){
         this.toggleNeighbors(hex.id);
       }
+
+      this.checkWinCondition();
     },
 
     toggleHex: function(pos){
       let hexagon = this.hexagons[pos[0]][pos[1]];
       this.changeColor(hexagon);    
-    },    
+    },
 
     changeColor: function(hex){
       
@@ -101,8 +107,6 @@ export default {
       }else{
         hex.fill = 'red';
       }
-
-      this.checkWinCondition();
     },
 
     getArrayPosition: function(id){
@@ -111,7 +115,6 @@ export default {
       for(let i = 0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
           if(this.hexagons[i][j].id == id){
-            console.log('Matching ID');
             arrayPosition[0] = i;
             arrayPosition[1] = j;
           }
@@ -237,7 +240,7 @@ export default {
   data: function() {
     return {
       gameState: {
-        currentLevel: 'Null'
+        currentLevel: null
       },
 
       hexagonData: {
@@ -421,7 +424,8 @@ export default {
             }
 
           ]
-        },{
+        },
+        {
           name: 'World 2',
           open: false,
           levels: [

@@ -2,115 +2,115 @@
     {
         "i": "0",
         "j": "0",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": "true"    
     },
     {
         "i": "0",
         "j": "1",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": "true"   
     },
     {
         "i": "0",
         "j": "2",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": "true"    
     },
     {
         "i": "1",
         "j": "0",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true   
     },
     {
         "i": "1",
         "j": "1",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "1",
         "j": "2",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "1",
         "j": "3",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "2",
         "j": "0",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "2",
         "j": "1",
-        "fill": "red",
-        "type": "normal"    
+        "type": "normal",
+        "toggled": false  
     },
     {
         "i": "2",
         "j": "2",
-        "fill": "red",
-        "type": "normal"    
+        "type": "normal",
+        "toggled": false  
     },
     {
         "i": "2",
         "j": "3",
-        "fill": "red",
-        "type": "normal"    
+        "type": "normal",
+        "toggled": false  
     },
     {
         "i": "2",
         "j": "4",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "3",
         "j": "0",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "3",
         "j": "1",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "3",
         "j": "2",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "3",
         "j": "3",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true   
     },
     {
         "i": "4",
         "j": "0",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true   
     },
     {
         "i": "4",
         "j": "1",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true  
     },
     {
         "i": "4",
         "j": "2",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true   
     }
 ]

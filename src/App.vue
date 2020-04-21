@@ -11,7 +11,7 @@
 
         <ul class='world-list level-nav-ul'>
           <li class='world' v-for='world in worlds' :key='world.id'>
-            <p class='world-title' v-on:click='openWorldLevels(world)'> {{world.name}} </p>
+            <p class='world-title' v-on:click='openWorldLevels(world)'> {{ world.name }} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
               <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
@@ -26,8 +26,8 @@
       <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:style="{ fill: hexagon.fill }" v-on:click='hexagonClicked(hexagon)'/>
-            <circle v-if='hexagon.type == "neighbors"' cx="25" cy="75" r="20" stroke="red" fill="black" stroke-width="5"/>
+            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)'/>
+            <circle v-if='hexagon.type == "neighbors"' cx="25" cy="75" r="20" stroke="gray" fill="black" stroke-width="5"/>
           </svg>
         </svg>
       </svg>
@@ -62,7 +62,7 @@ export default {
       
       for(let i =0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
-          if(this.hexagons[i][j].fill == 'red'){
+          if(this.hexagons[i][j].toggled == false){
             win = false;
           }
         }
@@ -86,7 +86,9 @@ export default {
 
     // -- Hexagon Methods --
     hexagonClicked: function(hex){
-      this.changeColor(hex);
+      if(hex.type == 'normal'){
+        this.changeColor(hex);
+      }
 
       if(hex.type == 'neighbors'){
         this.toggleNeighbors(hex.id);
@@ -101,12 +103,7 @@ export default {
     },
 
     changeColor: function(hex){
-      
-      if( hex.fill == 'red'){
-        hex.fill = 'green';  
-      }else{
-        hex.fill = 'red';
-      }
+      hex.toggled = !hex.toggled;
     },
 
     getArrayPosition: function(id){
@@ -159,22 +156,22 @@ export default {
       // Default set for every hexagon , purple = no hex data
       for(let i = 0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
-          this.hexagons[i][j].type = 'noHexData';
-          this.hexagons[i][j].fill = 'purple';
+          this.hexagons[i][j].type = 'normal';
+          this.hexagons[i][j].toggled = false;
         } 
       }
 
       // load each hex element
       json.forEach(item => { 
-        this.loadHex(item.i, item.j, item.fill, item.type); 
+        this.loadHex(item.i, item.j, item.toggled, item.type); 
       });
     },
 
-    loadHex: function(i, j, fill, type){
-      console.log(i + ' ' + j + ' ' + fill + ' ' + type);
+    loadHex: function(i, j, toggled, type){
+      console.log('loadingHex: ' + i + ',' + j + ' | ' + 'toggled: ' + toggled );
 
-      this.hexagons[i][j].fill = fill;
       this.hexagons[i][j].type = type;
+      this.hexagons[i][j].toggled = toggled;
     },
 
 
@@ -214,6 +211,8 @@ export default {
         downLeft[1] += 1;
       }
 
+      let center = this.getArrayPosition(id);
+
       // Check if hexs are valid, if so toggle them
       if(this.isValidHex(upRight[0], upRight[1])){
         this.toggleHex([upRight[0], upRight[1]]);
@@ -233,6 +232,11 @@ export default {
       if(this.isValidHex(downLeft[0], downLeft[1])){
         this.toggleHex([downLeft[0], downLeft[1]]);
       }
+      if(this.isValidHex(center[0], center[1])){
+        this.toggleHex([center[0], center[1]]);
+      }
+
+
     },
   },
 
@@ -252,152 +256,152 @@ export default {
           // 1st row
           {
             id: 0,
-            fill: 'red',
             x: '200',
             y: '0',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 1,
-            fill: 'red',
             x: '400',
             y: '0',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 2,
-            fill: 'red',
             x: '600',
             y: '0',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           }
         ],
         [
           // 2nd row
           {
             id: 3,
-            fill: 'red',
             x: '100',
             y: '175',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 4,
-            fill: 'red',
             x: '300',
             y: '175',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 5,
-            fill: 'red',
             x: '500',
             y: '175',
-            type: 'neighbors'
+            type: 'neighbors',
+            toggled: false
           },
           {
             id: 6,
-            fill: 'red',
             x: '700',
             y: '175',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           }
         ],
         [
           // 3rd row
           {
             id: 7,
-            fill: 'red',
             x: '0',
             y: '350',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 8,
-            fill: 'red',
             x: '200',
             y: '350',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             
             id: 9,
-            fill: 'red',
             x: '400',
             y: '350',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             
             id: 10,
-            fill: 'red',
             x: '600',
             y: '350',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             
             id: 11,
-            fill: 'red',
             x: '800',
             y: '350',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           }
         ],
         [
           // 4th row
           {
             id: 12,
-            fill: 'red',
             x: '100',
             y: '525',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 13,
-            fill: 'red',
             x: '300',
             y: '525',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 14,
-            fill: 'red',
             x: '500',
             y: '525',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             
             id: 15,
-            fill: 'red',
             x: '700',
             y: '525',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           }
         ],
         [
           //  5th row
           {
             id: 16,
-            fill: 'red',
             x: '200',
             y: '700',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 17,
-            fill: 'red',
             x: '400',
             y: '700',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           },
           {
             id: 18,
-            fill: 'red',
             x: '600',
             y: '700',
-            type: 'normal'
+            type: 'normal',
+            toggled: false
           }
         ]
       ],
@@ -410,7 +414,7 @@ export default {
             {
               name: '1-0',
               data: level_1_0,
-              completed: true
+              completed: false
             },
             {
               name: '1-1',
@@ -561,8 +565,15 @@ export default {
   transform: translate(-50%, -50%);
 }
 
+/* Hexagons */
+.hexToggled {
+  fill: green;
+}
+.hexNotToggled {
+  fill: red;
+}
+
 .hexagon-svg {
-  fill:grey;
   stroke-width:1;
 }
 </style>

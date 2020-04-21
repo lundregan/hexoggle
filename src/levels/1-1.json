@@ -2,19 +2,19 @@
     {
         "i": "0",
         "j": "0",
-        "fill": "red",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": false   
     },
     {
         "i": "0",
         "j": "1",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true    
     },
     {
         "i": "0",
         "j": "2",
-        "fill": "green",
-        "type": "activated"    
+        "type": "normal",
+        "toggled": true 
     }
 ]

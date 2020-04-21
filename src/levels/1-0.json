@@ -3,19 +3,19 @@
         "i": "0",
         "j": "0",
         "type": "normal",
-        "toggled": "true"    
+        "toggled": true  
     },
     {
         "i": "0",
         "j": "1",
         "type": "normal",
-        "toggled": "true"   
+        "toggled": true 
     },
     {
         "i": "0",
         "j": "2",
         "type": "normal",
-        "toggled": "true"    
+        "toggled": true  
     },
     {
         "i": "1",

@@ -26,8 +26,8 @@
       <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
         <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
           <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)'/>
-            <circle v-if='hexagon.type == "neighbors"' cx="25" cy="75" r="20" stroke="gray" fill="black" stroke-width="5"/>
+            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
+            <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
           </svg>
         </svg>
       </svg>

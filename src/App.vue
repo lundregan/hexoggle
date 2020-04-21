@@ -14,7 +14,7 @@
             <p class='world-title' v-on:click='openWorldLevels(world)'> {{world.name}} </p>
 
             <ul class='level-list level-nav-ul' v-if='world.open'>
-              <li class='level' v-for='level in world.levels' :key='level.id'> 
+              <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
                 <p class='level-title' v-on:click='loadLevelData(level.data)'> {{ level.name }} </p> 
                 </li>
             </ul>
@@ -393,15 +393,18 @@ export default {
           levels: [
             {
               name: '1-0',
-              data: level_1_0
+              data: level_1_0,
+              completed: true
             },
             {
               name: '1-1',
-              data: level_1_1
+              data: level_1_1,
+              completed: false
             },
             {
               name: '1-2',
-              data: level_1_2
+              data: level_1_2,
+              completed: false
             }
 
           ]
@@ -411,16 +414,17 @@ export default {
           levels: [
             {
               name: '2-1',
-              data: level_2_1
+              data: level_2_1,
+              completed: false
             },
             {
               name: '2-2',
-              data: level_2_2
+              data: level_2_2,
+              completed: false
             }
           ]
         }
       ]
-    
     };
   }
 }
@@ -512,6 +516,13 @@ export default {
 
 .level {
   margin: 10px 0 10px 0;
+}
+
+.levelComplete {
+  background-color: green;
+}
+
+.levelNotComplete {
   background-color: #FA4E5D;
 }
 

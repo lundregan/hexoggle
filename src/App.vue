@@ -455,6 +455,7 @@ export default {
   background-color: #474747;
 }
 
+/* Title header */
 .title {
   margin-top: 0px;
 
@@ -469,6 +470,7 @@ export default {
   color:            #FF7A00;
 }
 
+/* Level Select Menu */
 .level-nav {
   text-align: left;
   background-color: #121212;
@@ -492,11 +494,8 @@ export default {
   list-style-type: none;
 }
 
+/* Worlds */
 .world-list {
-  padding-left: 0px;
-}
-
-.level-list {
   padding-left: 0px;
 }
 
@@ -514,6 +513,12 @@ export default {
   color: #ffffff;
 }
 
+
+/* Levels */
+.level-list {
+  padding-left: 0px;
+}
+
 .level {
   margin: 10px 0 10px 0;
 }
@@ -526,6 +531,8 @@ export default {
   background-color: #FA4E5D;
 }
 
+
+/* SVG */
 .svg-viewbox {
   width: 70vw;
   height: 70vh;
@@ -536,7 +543,6 @@ export default {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-
 
 .hexagon-svg {
   fill:grey;

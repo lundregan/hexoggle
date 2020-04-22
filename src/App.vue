@@ -79,7 +79,7 @@ export default {
       }
 
       if(win == true){
-        alert('Hexoggle');
+        alert('Level Complete! | Moves: ' + this.gameState.currentMoves);
         this.gameState.currentLevel.completed = true;
       }
     },

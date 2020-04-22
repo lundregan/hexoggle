@@ -33,11 +33,16 @@
           </svg>
         </svg>
 
-        <button class='button-reset' v-on:click='resetCurrentLevel()'>
-          Reset Level
-        </button>
+        <div style='display: flex;'>
+          
+          <p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p>
+
+          <button class='button-reset' v-on:click='resetCurrentLevel()'>
+            Reset Level
+          </button>
+        </div>
       </div>
-    </div>    
+    </div>     
   </div>
 </template>
 
@@ -89,12 +94,16 @@ export default {
     },
 
     resetCurrentLevel: function(){
+      this.gameState.currentMoves = 0;
+
       this.loadLevelData(this.gameState.currentLevel.data);
     },
 
 
     // -- Hexagon Methods --
     hexagonClicked: function(hex){
+      this.gameState.currentMoves += 1;
+
       if(hex.type == 'normal'){
         this.changeColor(hex);
       }
@@ -253,7 +262,8 @@ export default {
   data: function() {
     return {
       gameState: {
-        currentLevel: null
+        currentLevel: null,
+        currentMoves: 0
       },
 
       hexagonData: {
@@ -584,6 +594,14 @@ export default {
 
 .hexagon-svg {
   stroke-width:1;
+}
+
+/* Game Information */
+
+.stat-moves {
+  margin: 10px 0 0 10px;
+
+  color: #FF7A00;
 }
 
 /* Buttons */

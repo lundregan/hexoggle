@@ -33,13 +33,19 @@
           </svg>
         </svg>
 
+        <p class='stat-level'> Level: {{ this.gameState.currentLevel.name }}</p>
+
         <div style='display: flex;'>
-          
           <p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p>
 
           <button class='button-reset' v-on:click='resetCurrentLevel()'>
             Reset Level
           </button>
+        </div>
+
+        <div class='level-switcher'> 
+          <button>Prev</button>
+          <button v-on:click='nextLevel()'>Next</button>
         </div>
       </div>
     </div>     
@@ -97,6 +103,23 @@ export default {
       this.gameState.currentMoves = 0;
 
       this.loadLevelData(this.gameState.currentLevel.data);
+    },
+
+    nextLevel: function(){
+      let nextLevel = null;
+      
+      for(let x = 0; x < this.worlds.length; x++){
+        for(let y = 0; y < this.worlds[x].levels.length - 1; y++){
+          if(this.worlds[x].levels[y] == this.gameState.currentLevel){
+            console.log('next Level = ' + this.worlds[x].levels[y + 1].name);
+            nextLevel = this.worlds[x].levels[y + 1];
+          }
+        }
+      }
+
+      if(nextLevel != null){
+        this.changeLevel(nextLevel);
+      }
     },
 
 
@@ -596,12 +619,24 @@ export default {
   stroke-width:1;
 }
 
-/* Game Information */
+/* Information and Game Controls */
+
+.stat-level {
+  color: #FF7A00;
+}
 
 .stat-moves {
   margin: 10px 0 0 10px;
 
   color: #FF7A00;
+}
+
+.level-switcher {
+  margin-top: 20px;
+}
+
+.level-switcher button {
+  margin: 0 5px 0 5px;
 }
 
 /* Buttons */

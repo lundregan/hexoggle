@@ -4,7 +4,7 @@
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
     </div>
-    <div id="game">
+    <div id="game" style='display: flex;'>
 
       <aside class='level-nav'>
         <p class='level-select-title'>Level Select</p>
@@ -23,16 +23,21 @@
       </aside>
 
       <!-- SVG Viewbox -->
-      <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
-        <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
-          <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
-            <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
-            <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
+      <div>
+        <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
+          <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
+            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+              <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
+              <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
+            </svg>
           </svg>
         </svg>
-      </svg>
-    </div>
-    
+
+        <button class='button-reset' v-on:click='resetCurrentLevel()'>
+          Reset Level
+        </button>
+      </div>
+    </div>    
   </div>
 </template>
 
@@ -81,6 +86,10 @@ export default {
 
     setCurrentLevel: function(level){
       this.gameState.currentLevel = level;
+    },
+
+    resetCurrentLevel: function(){
+      this.loadLevelData(this.gameState.currentLevel.data);
     },
 
 
@@ -576,4 +585,16 @@ export default {
 .hexagon-svg {
   stroke-width:1;
 }
+
+/* Buttons */
+.button-reset{
+  margin-top: 5px;
+
+  right: 0;
+
+  height: 40px;
+
+  position: absolute;
+}
+
 </style>

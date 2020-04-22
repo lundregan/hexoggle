@@ -44,7 +44,7 @@
         </div>
 
         <div class='level-switcher'> 
-          <button>Prev</button>
+          <button v-on:click='prevLevel()'>Prev</button>
           <button v-on:click='nextLevel()'>Next</button>
         </div>
       </div>
@@ -111,7 +111,6 @@ export default {
       for(let x = 0; x < this.worlds.length; x++){
         for(let y = 0; y < this.worlds[x].levels.length - 1; y++){
           if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            console.log('next Level = ' + this.worlds[x].levels[y + 1].name);
             nextLevel = this.worlds[x].levels[y + 1];
           }
         }
@@ -119,6 +118,22 @@ export default {
 
       if(nextLevel != null){
         this.changeLevel(nextLevel);
+      }
+    },
+
+    prevLevel: function(){
+      let prevLevel = null;
+
+      for(let x = 0; x < this.worlds.length; x++){
+        for(let y = 1; y < this.worlds[x].levels.length; y++){
+          if(this.worlds[x].levels[y] == this.gameState.currentLevel){
+            prevLevel = this.worlds[x].levels[y - 1];
+          }
+        }
+      }
+
+      if(prevLevel != null){
+        this.changeLevel(prevLevel);
       }
     },
 

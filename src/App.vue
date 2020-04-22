@@ -67,7 +67,7 @@ export default {
   },
 
   created: function(){
-    this.gameState.currentLevel = this.worlds[0].levels[0]
+    this.changeLevel(this.worlds[0].levels[0]);
   },
 
   methods: {

@@ -22,8 +22,14 @@
         </ul>
       </aside>
 
-      <!-- SVG Viewbox -->
+      <!-- Game Container -->
       <div class='game-container'>
+        <div style='text-align: center;'>
+          <span class="left"><p class='stat-level'> Level: {{ this.gameState.currentLevel.name }} </p></span>
+          <p class='stat-completed' v-if='this.gameState.currentLevel.completed'> Personal Best - Moves: {{this.gameState.currentLevel.bestMoves}}</p>
+          <span class="right"><p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p></span>
+        </div>
+        
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
@@ -37,14 +43,7 @@
           <button class='level-change-button' v-on:click='prevLevel()'>Previous</button>
           <button class='level-change-button' v-on:click='nextLevel()'>Next</button>
         </div>
-        
-        <div style='text-align: left;'>
-          <p class='stat-level stat-moves'> Level: {{ this.gameState.currentLevel.name }}</p>
 
-          <p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p>
-
-          <p class='stat-moves stat-completed' style='margin-top: 40px;' v-if='this.gameState.currentLevel.completed'> Completed in {{this.gameState.currentLevel.bestMoves}}</p>
-        </div>
       </div>
     </div>     
   </div>
@@ -690,11 +689,18 @@ export default {
 /* Information and Game Controls */
 
 .stat-level {
+  margin: 10px 0 0 0;
+
   color: #FF7A00;
+}
+.stat-completed {
+  margin: 10px 0 0 0;
+
+  color:#FF7A00;
 }
 
 .stat-moves {
-  margin: 10px 0 0 10px;
+  margin: 30px 0 0 10px;
 
   color: #FF7A00;
 }

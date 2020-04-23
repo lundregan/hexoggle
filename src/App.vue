@@ -106,6 +106,10 @@ export default {
       this.loadLevelData(this.gameState.currentLevel.data);
     },
 
+    resetCurrentMoves: function(){
+      this.gameState.currentMoves = 0;
+    },
+
     nextLevel: function(){
       let nextLevel = null;
       
@@ -120,6 +124,8 @@ export default {
       if(nextLevel != null){
         this.changeLevel(nextLevel);
       }
+
+      this.resetCurrentMoves();
     },
 
     prevLevel: function(){
@@ -136,6 +142,8 @@ export default {
       if(prevLevel != null){
         this.changeLevel(prevLevel);
       }
+
+      this.resetCurrentMoves();
     },
 
 

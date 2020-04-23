@@ -23,7 +23,7 @@
       </aside>
 
       <!-- SVG Viewbox -->
-      <div>
+      <div class='game-container'>
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
@@ -590,7 +590,7 @@ export default {
 
 /* Title header */
 .title {
-  margin-top: 0px;
+  padding: 0 0 0 10px;
 
   padding-bottom: 10px;
 
@@ -598,6 +598,7 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: bold;
+  text-align: left;
 
   background-color: #121212;
   color:            #FF7A00;
@@ -664,17 +665,17 @@ export default {
   background-color: #FA4E5D;
 }
 
+/* Game */
+.game-container{
+  width: 100%;
+}
 
 /* SVG */
 .svg-viewbox {
+  margin: 20px 0 0 0;
+
   width: 70vw;
   height: 70vh;
-
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
 
 /* Hexagons */

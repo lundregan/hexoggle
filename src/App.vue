@@ -33,20 +33,17 @@
           </svg>
         </svg>
 
+        <div class='level-switcher' style='margin-left: 6px;'> 
+          <button class='level-change-button' v-on:click='prevLevel()'>Previous</button>
+          <button class='level-change-button' v-on:click='nextLevel()'>Next</button>
+        </div>
+        
         <div style='text-align: left;'>
           <p class='stat-level stat-moves'> Level: {{ this.gameState.currentLevel.name }}</p>
 
           <p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p>
 
           <p class='stat-moves stat-completed' style='margin-top: 40px;' v-if='this.gameState.currentLevel.completed'> Completed in {{this.gameState.currentLevel.bestMoves}}</p>
-
-          <button class='' v-on:click='resetAllProgress()'>Reset All Progress</button>
-          <button class='' v-on:click='resetCurrentLevel()'>Reset Level</button>
-
-          <div class='level-switcher' style='margin-left: 6px;'> 
-            <button v-on:click='prevLevel()'>Prev</button>
-            <button v-on:click='nextLevel()'>Next</button>
-          </div>
         </div>
       </div>
     </div>     
@@ -706,8 +703,22 @@ export default {
   margin-top: 20px;
 }
 
-.level-switcher button {
-  margin: 0 5px 0 5px;
+.level-change-button{
+  margin: 0 20px 0 20px;
+
+  min-width: 60px;
+  min-height: 40px;
+  height: 5vh;
+  width: 5vw;
+
+  border: none;
+  border-radius: 10px;
+
+  font-weight: bold;
+  font-size: calc((1vw + 1vh) / 2);
+
+  background-color: #2b2b2b;
+  color:            #FF7A00;
 }
 
 /* Buttons */

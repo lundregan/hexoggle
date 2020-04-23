@@ -40,9 +40,8 @@
 
           <p class='stat-moves stat-completed' style='margin-top: 40px;' v-if='this.gameState.currentLevel.completed'> Completed in {{this.gameState.currentLevel.bestMoves}}</p>
 
-          <button class='button-reset' v-on:click='resetCurrentLevel()'>
-            Reset Level
-          </button>
+          <button class='' v-on:click='resetAllProgress()'>Reset All Progress</button>
+          <button class='' v-on:click='resetCurrentLevel()'>Reset Level</button>
 
           <div class='level-switcher' style='margin-left: 6px;'> 
             <button v-on:click='prevLevel()'>Prev</button>
@@ -139,6 +138,10 @@ export default {
 
     resetCurrentMoves: function(){
       this.gameState.currentMoves = 0;
+    },
+
+    resetAllProgress: function(){
+      localStorage.removeItem('worlds');
     },
 
     nextLevel: function(){

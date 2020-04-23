@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-on:keydown.left="key()">
 
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
@@ -72,7 +72,17 @@ export default {
     this.changeLevel(this.worlds[0].levels[0]);
   },
 
+  mounted: function(){
+    if (localStorage.worlds) {
+      this.worlds = JSON.parse(localStorage.worlds);
+    }
+  },
+
   methods: {
+    // -- Key Binding --
+    key: function(event) {
+      alert('key ' + event.key + ' (' + event.keyCode + ')');
+    },
 
     // -- Game Methods --
     checkWinCondition: function(){
@@ -104,6 +114,12 @@ export default {
         
       alert('Level Complete');
       this.nextLevel();
+
+      this.saveState();
+    },
+
+    saveState: function(){
+      localStorage.worlds = JSON.stringify(this.worlds);
     },
 
     changeLevel: function(level){
@@ -328,6 +344,8 @@ export default {
 
   data: function() {
     return {
+      test: 'NA',
+
       gameState: {
         currentLevel: null,
         currentMoves: 0

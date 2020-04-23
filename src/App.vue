@@ -33,19 +33,21 @@
           </svg>
         </svg>
 
-        <p class='stat-level'> Level: {{ this.gameState.currentLevel.name }}</p>
+        <div style='text-align: left;'>
+          <p class='stat-level stat-moves'> Level: {{ this.gameState.currentLevel.name }}</p>
 
-        <div style='display: flex;'>
           <p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p>
+
+          <p class='stat-moves stat-completed' style='margin-top: 40px;' v-if='this.gameState.currentLevel.completed'> Completed in {{this.gameState.currentLevel.bestMoves}}</p>
 
           <button class='button-reset' v-on:click='resetCurrentLevel()'>
             Reset Level
           </button>
-        </div>
 
-        <div class='level-switcher'> 
-          <button v-on:click='prevLevel()'>Prev</button>
-          <button v-on:click='nextLevel()'>Next</button>
+          <div class='level-switcher' style='margin-left: 6px;'> 
+            <button v-on:click='prevLevel()'>Prev</button>
+            <button v-on:click='nextLevel()'>Next</button>
+          </div>
         </div>
       </div>
     </div>     
@@ -86,6 +88,15 @@ export default {
 
       if(win == true){
         this.gameState.currentLevel.completed = true;
+        
+        if(this.gameState.currentLevel.bestMoves == null){
+          this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
+        }else{
+          if(this.gameState.currentMoves < this.gameState.currentLevel.bestMoves){
+            this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
+          }
+        }
+        
         alert('Level Complete');
         this.nextLevel();
       }
@@ -480,17 +491,20 @@ export default {
             {
               name: '1-0',
               data: level_1_0,
-              completed: false
+              completed: false,
+              bestMoves: null
             },
             {
               name: '1-1',
               data: level_1_1,
-              completed: false
+              completed: false,
+              bestMoves: null
             },
             {
               name: '1-2',
               data: level_1_2,
-              completed: false
+              completed: false,
+              bestMoves: null
             }
 
           ]
@@ -502,12 +516,14 @@ export default {
             {
               name: '2-1',
               data: level_2_1,
-              completed: false
+              completed: false,
+              bestMoves: null
             },
             {
               name: '2-2',
               data: level_2_2,
-              completed: false
+              completed: false,
+              bestMoves: null
             }
           ]
         }

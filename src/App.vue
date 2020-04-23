@@ -87,19 +87,23 @@ export default {
       }
 
       if(win == true){
-        this.gameState.currentLevel.completed = true;
-        
-        if(this.gameState.currentLevel.bestMoves == null){
-          this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
-        }else{
-          if(this.gameState.currentMoves < this.gameState.currentLevel.bestMoves){
-            this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
-          }
-        }
-        
-        alert('Level Complete');
-        this.nextLevel();
+        this.winCurrentLevel();
       }
+    },
+
+    winCurrentLevel: function(){
+      this.gameState.currentLevel.completed = true;
+        
+      if(this.gameState.currentLevel.bestMoves == null){
+        this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
+      }else{
+        if(this.gameState.currentMoves < this.gameState.currentLevel.bestMoves){
+          this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
+        }
+      }
+        
+      alert('Level Complete');
+      this.nextLevel();
     },
 
     changeLevel: function(level){
@@ -162,13 +166,7 @@ export default {
     hexagonClicked: function(hex){
       this.gameState.currentMoves += 1;
 
-      if(hex.type == 'normal'){
-        this.changeColor(hex);
-      }
-
-      if(hex.type == 'neighbors'){
-        this.toggleNeighbors(hex.id);
-      }
+      this.executeHexagonAction(hex);
 
       this.checkWinCondition();
     },
@@ -195,6 +193,10 @@ export default {
       }
       
       return arrayPosition;
+    },
+
+    getHexagonFromArrayPosition: function(i, j){
+      return this.hexagons[i][j];
     },
 
     isValidHex: function(x, y){
@@ -229,7 +231,7 @@ export default {
     },
 
     loadLevelData: function(json){
-      // Default set for every hexagon , purple = no hex data
+      // Default set for every hexagon , false toggled (red) and type of normal
       for(let i = 0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
           this.hexagons[i][j].type = 'normal';
@@ -244,8 +246,6 @@ export default {
     },
 
     loadHex: function(i, j, toggled, type){
-      console.log('loadingHex: ' + i + ',' + j + ' | ' + 'toggled: ' + toggled );
-
       this.hexagons[i][j].type = type;
       this.hexagons[i][j].toggled = toggled;
     },
@@ -253,6 +253,17 @@ export default {
 
 
     // -- Hexagon type behaviours --
+    executeHexagonAction: function(hex){
+
+      if(hex.type == 'normal'){
+        this.changeColor(hex);
+      }
+
+      if(hex.type == 'neighbors'){
+        this.toggleNeighbors(hex.id);
+      }
+    },
+    
     toggleNeighbors: function(id){
 
       let upRight = this.getArrayPosition(id);
@@ -311,8 +322,6 @@ export default {
       if(this.isValidHex(center[0], center[1])){
         this.toggleHex([center[0], center[1]]);
       }
-
-
     },
   },
 

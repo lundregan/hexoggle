@@ -35,13 +35,15 @@
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
               <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
+              <rect v-if='hexagon.type == "singleNeighbor"' width='20%' height='30%' />
             </svg>
           </svg>
         </svg>
 
         <div class='level-switcher' style='margin-left: 6px;'> 
-          <button class='level-change-button' v-on:click='prevLevel()'>Previous</button>
-          <button class='level-change-button' v-on:click='nextLevel()'>Next</button>
+          <button class='level-change-prev' v-on:click='prevLevel()'>Previous</button>
+          <button class='level-change-reset' v-on:click='resetCurrentLevel()'>Reset</button>
+          <button class='level-change-next' v-on:click='nextLevel()'>Next</button>
         </div>
 
       </div>
@@ -512,7 +514,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
-          open: false,
+          open: true,
           levels: [
             {
               name: '1-0',
@@ -705,11 +707,14 @@ export default {
   color: #FF7A00;
 }
 
+/* Level Switcher & Reset*/
+
 .level-switcher {
   margin-top: 20px;
 }
 
-.level-change-button{
+.level-change-prev, 
+.level-change-next{
   margin: 0 20px 0 20px;
 
   min-width: 60px;
@@ -727,15 +732,22 @@ export default {
   color:            #FF7A00;
 }
 
-/* Buttons */
-.button-reset{
-  margin-top: 5px;
+.level-change-reset{
+  margin: 0 20px 0 20px;
 
-  right: 0;
+  min-width: 60px;
+  min-height: 40px;
+  height: 5vh;
+  width: 5vh;
 
-  height: 40px;
+  border: none;
+  border-radius: 10px;
 
-  position: absolute;
+  font-weight: bold;
+  font-size: calc(((1vw + 1vh) / 2) + 1px);
+
+  background-color: #2b2b2b;
+  color:            #e20b00;
 }
 
 </style>

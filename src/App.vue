@@ -35,7 +35,7 @@
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
               <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
-              <rect v-if='hexagon.type == "singleNeighbor"' width='20%' height='30%' />
+              <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
             </svg>
           </svg>
         </svg>
@@ -279,6 +279,10 @@ export default {
       if(hex.type == 'neighbors'){
         this.toggleNeighbors(hex.id);
       }
+
+      if(hex.type == 'singleNeighborRight'){
+        this.toggleNeighborRight(hex.id);
+      }
     },
     
     toggleNeighbors: function(id){
@@ -340,6 +344,21 @@ export default {
         this.toggleHex([center[0], center[1]]);
       }
     },
+
+    toggleNeighborRight: function(id){
+      let center = this.getArrayPosition(id);
+      
+      let right = this.getArrayPosition(id);
+      right[1] += 1;
+
+      if(this.isValidHex(right[0], right[1])){
+        this.toggleHex([right[0], right[1]]);
+      }
+
+      if(this.isValidHex(center[0], center[1])){
+        this.toggleHex([center[0], center[1]]);
+      }
+    }
   },
 
 
@@ -514,7 +533,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
-          open: true,
+          open: false,
           levels: [
             {
               name: '1-0',
@@ -534,17 +553,16 @@ export default {
               completed: false,
               bestMoves: null
             }
-
           ]
         },
         {
           name: 'World 2',
-          open: false,
+          open: true,
           levels: [
             {
               name: '2-1',
               data: level_2_1,
-              completed: false,
+              completed: true,
               bestMoves: null
             },
             {
@@ -552,7 +570,13 @@ export default {
               data: level_2_2,
               completed: false,
               bestMoves: null
-            }
+            },
+            {
+              name: '2-3',
+              data: level_1_1,
+              completed: false,
+              bestMoves: null
+            },
           ]
         }
       ]

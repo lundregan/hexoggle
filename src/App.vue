@@ -76,10 +76,6 @@ export default {
   },
 
   methods: {
-    // -- Key Binding --
-    key: function(event) {
-      alert('key ' + event.key + ' (' + event.keyCode + ')');
-    },
 
     // -- Game Methods --
     checkWinCondition: function(){
@@ -93,7 +89,7 @@ export default {
         }
       }
 
-      if(win == true){
+      if(win){
         this.winCurrentLevel();
       }
     },
@@ -129,8 +125,7 @@ export default {
     },
 
     resetCurrentLevel: function(){
-      this.gameState.currentMoves = 0;
-
+      this.resetCurrentMoves();
       this.loadLevelData(this.gameState.currentLevel.data);
     },
 
@@ -143,36 +138,26 @@ export default {
     },
 
     nextLevel: function(){
-      let nextLevel = null;
-      
-      for(let x = 0; x < this.worlds.length; x++){
-        for(let y = 0; y < this.worlds[x].levels.length - 1; y++){
-          if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            nextLevel = this.worlds[x].levels[y + 1];
-          }
-        }
-      }
-
-      if(nextLevel != null){
-        this.changeLevel(nextLevel);
-      }
-
-      this.resetCurrentMoves();
+      this.incrementLevel(+1);
     },
 
     prevLevel: function(){
-      let prevLevel = null;
+      this.incrementLevel(-1);
+    },
+
+    incrementLevel: function(increment){
+      let newLevel = null;
 
       for(let x = 0; x < this.worlds.length; x++){
         for(let y = 1; y < this.worlds[x].levels.length; y++){
           if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            prevLevel = this.worlds[x].levels[y - 1];
+            newLevel = this.worlds[x].levels[y + increment];
           }
         }
       }
 
-      if(prevLevel != null){
-        this.changeLevel(prevLevel);
+      if(newLevel != null){
+        this.changeLevel(newLevel);
       }
 
       this.resetCurrentMoves();
@@ -247,7 +232,7 @@ export default {
       world.open = !world.open;
     },
 
-    loadLevelData: function(json){
+    loadDefaultlevelData: function(){
       // Default set for every hexagon , false toggled (red) and type of normal
       for(let i = 0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
@@ -255,6 +240,10 @@ export default {
           this.hexagons[i][j].toggled = false;
         } 
       }
+    },
+
+    loadLevelData: function(json){
+      this.loadDefaultlevelData();
 
       // load each hex element
       json.forEach(item => { 
@@ -266,8 +255,7 @@ export default {
       this.hexagons[i][j].type = type;
       this.hexagons[i][j].toggled = toggled;
     },
-
-
+    
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
@@ -562,7 +550,7 @@ export default {
             {
               name: '2-1',
               data: level_2_1,
-              completed: true,
+              completed: false,
               bestMoves: null
             },
             {

@@ -255,13 +255,14 @@ export default {
       this.hexagons[i][j].type = type;
       this.hexagons[i][j].toggled = toggled;
     },
-    
+
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
 
       if(hex.type == 'normal'){
-        this.changeColor(hex);
+        //this.changeColor(hex);
+        this.toggleCenter(hex);
       }
 
       if(hex.type == 'neighbors'){
@@ -346,6 +347,10 @@ export default {
       if(this.isValidHex(center[0], center[1])){
         this.toggleHex([center[0], center[1]]);
       }
+    },
+
+    toggleCenter:function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
     }
   },
 

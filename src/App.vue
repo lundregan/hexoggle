@@ -138,7 +138,7 @@ export default {
     },
 
     nextLevel: function(){
-      this.incrementLevel(+1);
+      this.incrementLevel(1);
     },
 
     prevLevel: function(){
@@ -146,21 +146,21 @@ export default {
     },
 
     incrementLevel: function(increment){
-      let newLevel = null;
+      var newLevel = null;
 
-      for(let x = 0; x < this.worlds.length; x++){
-        for(let y = 1; y < this.worlds[x].levels.length; y++){
+      for(var x = 0; x < this.worlds.length; x++){
+        for(var y = 0; y < this.worlds[x].levels.length; y++){
           if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            newLevel = this.worlds[x].levels[y + increment];
-          }
+            if(this.isValidHex(x, y)){
+              newLevel = this.worlds[x].levels[y + increment];
+            }
+          } 
         }
       }
-
+      
       if(newLevel != null){
         this.changeLevel(newLevel);
       }
-
-      this.resetCurrentMoves();
     },
 
 

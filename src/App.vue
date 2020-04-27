@@ -106,6 +106,7 @@ export default {
       }
         
       alert('Level Complete');
+      this.gameState.currentMoves = 0;
       this.nextLevel();
 
       this.saveState();
@@ -151,7 +152,7 @@ export default {
       for(var x = 0; x < this.worlds.length; x++){
         for(var y = 0; y < this.worlds[x].levels.length; y++){
           if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            if(this.isValidHex(x, y)){
+            if(this.isValidHex(x, y + increment)){
               newLevel = this.worlds[x].levels[y + increment];
             }
           } 
@@ -175,7 +176,7 @@ export default {
 
     toggleHex: function(pos){
       let hexagon = this.hexagons[pos[0]][pos[1]];
-      this.changeColor(hexagon);    
+      this.changeColor(hexagon);
     },
 
     changeColor: function(hex){
@@ -521,7 +522,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
-          open: false,
+          open: true,
           levels: [
             {
               name: '1-0',
@@ -545,7 +546,7 @@ export default {
         },
         {
           name: 'World 2',
-          open: true,
+          open: false,
           levels: [
             {
               name: '2-1',

@@ -37,8 +37,9 @@
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
               <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
-              <rect v-if='hexagon.type == "singleNeighborBottomRight"' x='195' y='-76' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
-              <rect v-if='hexagon.type == "singleNeighborBottomLeft"' x='195' y='-76' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborBottomLeft"' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborBottomRight"' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborTopLeft"' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
             </svg>
           </svg>
         </svg>
@@ -219,6 +220,18 @@ export default {
       return this.getHexagonFromArrayPosition(bottomRightHexPosition[0], bottomRightHexPosition[1]);
     },
 
+    getTopLeftHex: function(hex){
+      var topLeftHexPosition = this.getArrayPosition(hex.id);
+      topLeftHexPosition[0] -= 1;
+      topLeftHexPosition[1] -= 1;
+
+      if(topLeftHexPosition[0] >= 2){
+        topLeftHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(topLeftHexPosition[0], topLeftHexPosition[1]);
+    },
+
     toggleLeftHex: function(currentHex){
       var leftHex = this.getLeftHex(currentHex);
 
@@ -241,6 +254,12 @@ export default {
       var bottomRightHex = this.getBottomRightHex(currentHex);
 
       this.executeHexagonAction(bottomRightHex);
+    },
+
+    toggleTopLeftHex: function(currentHex){
+      var topLeftHex = this.getTopLeftHex(currentHex);
+
+      this.executeHexagonAction(topLeftHex);
     },
 
     changeColor: function(hex){
@@ -350,6 +369,10 @@ export default {
       if(hex.type == 'singleNeighborBottomRight'){
         this.toggleNeighborBottomRight(hex);
       }
+
+      if(hex.type == 'singleNeighborTopLeft'){
+        this.toggleNeighborTopLeft(hex);
+      }
       
     },
     
@@ -435,6 +458,12 @@ export default {
       this.toggleHex(this.getArrayPosition(hex.id));
 
       this.toggleBottomLeftHex(hex);
+    },
+
+    toggleNeighborTopLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleTopLeftHex(hex);
     }
   },
 

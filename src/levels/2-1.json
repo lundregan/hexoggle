@@ -38,7 +38,7 @@
     {
         "i": "1",
         "j": "3",
-        "type": "normal",
+        "type": "singleNeighborBottomRight",
         "toggled": true    
     },
     {
@@ -68,7 +68,7 @@
     {
         "i": "2",
         "j": "4",
-        "type": "normal",
+        "type": "singleNeighborBottomLeft",
         "toggled": true    
     },
     {

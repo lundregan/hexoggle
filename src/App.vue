@@ -37,6 +37,7 @@
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborBottomRight"' x='195' y='-76' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborBottomLeft"' x='195' y='-76' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
             </svg>
           </svg>
         </svg>
@@ -187,6 +188,18 @@ export default {
       return this.getHexagonFromArrayPosition(rightHexPosition[0], rightHexPosition[1]);
     },
 
+    getBottomLeftHex: function(hex){
+      var bottomLeftHexPosition = this.getArrayPosition(hex.id);
+      bottomLeftHexPosition[0] += 1;
+      bottomLeftHexPosition[1] -= 1;
+
+      if(bottomLeftHexPosition[0] <= 2){
+        bottomLeftHexPosition[1] += 1;
+      }
+      
+      return this.getHexagonFromArrayPosition(bottomLeftHexPosition[0], bottomLeftHexPosition[1]);
+    },
+
     getBottomRightHex: function(hex){
       var bottomRightHexPosition = this.getArrayPosition(hex.id);
       bottomRightHexPosition[0] += 1;
@@ -202,6 +215,12 @@ export default {
       var rightHex = this.getRightHex(currentHex);
 
       this.executeHexagonAction(rightHex);
+    },
+
+    toggleBottomLeftHex: function(currentHex){
+      var bottomLeftHex = this.getBottomLeftHex(currentHex);
+
+      this.executeHexagonAction(bottomLeftHex);
     },
 
     toggleBottomRightHex: function(currentHex){
@@ -305,9 +324,14 @@ export default {
         this.toggleNeighborRight(hex);
       }
 
+      if(hex.type == 'singleNeighborBottomLeft'){
+        this.toggleNeighborBottomLeft(hex);
+      }
+
       if(hex.type == 'singleNeighborBottomRight'){
         this.toggleNeighborBottomRight(hex);
       }
+      
     },
     
     toggleNeighbors: function(id){
@@ -380,6 +404,12 @@ export default {
       this.toggleHex(this.getArrayPosition(hex.id));
 
       this.toggleBottomRightHex(hex);
+    },
+
+    toggleNeighborBottomLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleBottomLeftHex(hex);
     }
   },
 

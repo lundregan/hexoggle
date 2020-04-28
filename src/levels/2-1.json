@@ -14,7 +14,7 @@
     {
         "i": "0",
         "j": "2",
-        "type": "normal",
+        "type": "singleNeighborBottomRight",
         "toggled": true  
     },
     {

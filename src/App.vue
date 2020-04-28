@@ -36,6 +36,7 @@
               <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
+              <rect v-if='hexagon.type == "singleNeighborBottomRight"' x='195' y='-76' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
             </svg>
           </svg>
         </svg>

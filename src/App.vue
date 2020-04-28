@@ -40,6 +40,7 @@
               <rect v-if='hexagon.type == "singleNeighborBottomLeft"' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
               <rect v-if='hexagon.type == "singleNeighborBottomRight"' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
               <rect v-if='hexagon.type == "singleNeighborTopLeft"' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborTopRight"' width='10px' height='100px' style='x: 20; y: 76; transform: rotate(-60deg)' />
             </svg>
           </svg>
         </svg>
@@ -232,6 +233,17 @@ export default {
       return this.getHexagonFromArrayPosition(topLeftHexPosition[0], topLeftHexPosition[1]);
     },
 
+    getTopRightHex: function(hex){
+      var topRightHexPosition = this.getArrayPosition(hex.id);
+      topRightHexPosition[0] -= 1;
+
+      if(topRightHexPosition[0] >= 2){
+        topRightHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(topRightHexPosition[0], topRightHexPosition[1]);
+    },
+
     toggleLeftHex: function(currentHex){
       var leftHex = this.getLeftHex(currentHex);
 
@@ -260,6 +272,12 @@ export default {
       var topLeftHex = this.getTopLeftHex(currentHex);
 
       this.executeHexagonAction(topLeftHex);
+    },
+
+    toggleTopRightHex: function(currentHex){
+      var topRightHex = this.getTopRightHex(currentHex);
+
+      this.executeHexagonAction(topRightHex);
     },
 
     changeColor: function(hex){
@@ -374,6 +392,9 @@ export default {
         this.toggleNeighborTopLeft(hex);
       }
       
+      if(hex.type == 'singleNeighborTopRight'){
+        this.toggleNeighborTopRight(hex);
+      }
     },
     
     toggleNeighbors: function(id){
@@ -464,6 +485,12 @@ export default {
       this.toggleHex(this.getArrayPosition(hex.id));
 
       this.toggleTopLeftHex(hex);
+    },
+
+    toggleNeighborTopRight: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleTopRightHex(hex);
     }
   },
 

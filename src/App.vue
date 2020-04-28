@@ -181,17 +181,33 @@ export default {
     },
     
     getRightHex: function(hex){
-
       var rightHexPosition = this.getArrayPosition(hex.id);
       rightHexPosition[1] += 1;
 
       return this.getHexagonFromArrayPosition(rightHexPosition[0], rightHexPosition[1]);
     },
 
+    getBottomRightHex: function(hex){
+      var bottomRightHexPosition = this.getArrayPosition(hex.id);
+      bottomRightHexPosition[0] += 1;
+
+      if(bottomRightHexPosition[0] <= 2){
+        bottomRightHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(bottomRightHexPosition[0], bottomRightHexPosition[1]);
+    },
+
     toggleRightHex: function(currentHex){
       var rightHex = this.getRightHex(currentHex);
 
       this.executeHexagonAction(rightHex);
+    },
+
+    toggleBottomRightHex: function(currentHex){
+      var bottomRightHex = this.getBottomRightHex(currentHex);
+
+      this.executeHexagonAction(bottomRightHex);
     },
 
     changeColor: function(hex){
@@ -288,6 +304,10 @@ export default {
         //this.toggleNeighborRight(hex.id);
         this.toggleNeighborRight(hex);
       }
+
+      if(hex.type == 'singleNeighborBottomRight'){
+        this.toggleNeighborBottomRight(hex);
+      }
     },
     
     toggleNeighbors: function(id){
@@ -354,6 +374,12 @@ export default {
       this.toggleHex(this.getArrayPosition(hex.id));
 
       this.toggleRightHex(hex);
+    },
+
+    toggleNeighborBottomRight: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleBottomRightHex(hex);
     }
   },
 

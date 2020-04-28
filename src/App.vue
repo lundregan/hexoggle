@@ -35,6 +35,7 @@
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
               <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
+              <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborBottomRight"' x='195' y='-76' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
               <rect v-if='hexagon.type == "singleNeighborBottomLeft"' x='195' y='-76' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
@@ -180,6 +181,13 @@ export default {
       let hexagon = this.hexagons[pos[0]][pos[1]];
       this.changeColor(hexagon);
     },
+
+    getLeftHex: function(hex){
+      var leftHexPosition = this.getArrayPosition(hex.id);
+      leftHexPosition[1] -= 1;
+
+      return this.getHexagonFromArrayPosition(leftHexPosition[0], leftHexPosition[1]);
+    },
     
     getRightHex: function(hex){
       var rightHexPosition = this.getArrayPosition(hex.id);
@@ -196,7 +204,7 @@ export default {
       if(bottomLeftHexPosition[0] <= 2){
         bottomLeftHexPosition[1] += 1;
       }
-      
+
       return this.getHexagonFromArrayPosition(bottomLeftHexPosition[0], bottomLeftHexPosition[1]);
     },
 
@@ -209,6 +217,12 @@ export default {
       }
 
       return this.getHexagonFromArrayPosition(bottomRightHexPosition[0], bottomRightHexPosition[1]);
+    },
+
+    toggleLeftHex: function(currentHex){
+      var leftHex = this.getLeftHex(currentHex);
+
+      this.executeHexagonAction(leftHex);
     },
 
     toggleRightHex: function(currentHex){
@@ -319,6 +333,11 @@ export default {
         this.toggleNeighbors(hex.id);
       }
 
+      if(hex.type == 'singleNeighborLeft'){
+        //this.toggleNeighborRight(hex.id);
+        this.toggleNeighborLeft(hex);
+      }
+
       if(hex.type == 'singleNeighborRight'){
         //this.toggleNeighborRight(hex.id);
         this.toggleNeighborRight(hex);
@@ -392,6 +411,12 @@ export default {
       if(this.isValidHex(center[0], center[1])){
         this.toggleHex([center[0], center[1]]);
       }
+    },
+
+    toggleNeighborLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleLeftHex(hex);
     },
 
     toggleNeighborRight: function(hex){

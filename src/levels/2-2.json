@@ -2,8 +2,8 @@
     {
         "i": "0",
         "j": "0",
-        "type": "normal",
-        "toggled": true  
+        "type": "singleNeighborBottomRight",
+        "toggled": false  
     },
     {
         "i": "0",
@@ -14,8 +14,8 @@
     {
         "i": "0",
         "j": "2",
-        "type": "normal",
-        "toggled": true  
+        "type": "singleNeighborBottomLeft",
+        "toggled": false  
     },
     {
         "i": "1",
@@ -26,14 +26,14 @@
     {
         "i": "1",
         "j": "1",
-        "type": "normal",
-        "toggled": true    
+        "type": "singleNeighborBottomRight",
+        "toggled": false    
     },
     {
         "i": "1",
         "j": "2",
-        "type": "normal",
-        "toggled": true    
+        "type": "singleNeighborBottomLeft",
+        "toggled": false    
     },
     {
         "i": "1",
@@ -51,19 +51,19 @@
         "i": "2",
         "j": "1",
         "type": "normal",
-        "toggled": false  
+        "toggled": true  
     },
     {
         "i": "2",
         "j": "2",
         "type": "normal",
-        "toggled": false  
+        "toggled": true  
     },
     {
         "i": "2",
         "j": "3",
         "type": "normal",
-        "toggled": false  
+        "toggled": true  
     },
     {
         "i": "2",

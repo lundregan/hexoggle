@@ -368,7 +368,7 @@ export default {
       }
 
       if(hex.type == 'neighbors'){
-        this.toggleNeighbors(hex.id);
+        this.toggleNeighbors(hex);
       }
 
       if(hex.type == 'singleNeighborLeft'){
@@ -398,64 +398,15 @@ export default {
       }
     },
     
-    toggleNeighbors: function(id){
+    toggleNeighbors: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
 
-      let upRight = this.getArrayPosition(id);
-      upRight[0] -= 1;
-      if(upRight[0] >= 2){
-        upRight[1] += 1;
-      }
-
-      let upLeft = this.getArrayPosition(id);
-      upLeft[0] -= 1;
-      upLeft[1] -= 1;
-      if(upLeft[0] >= 2){
-        upLeft[1] += 1;
-      }
-
-      let left = this.getArrayPosition(id);
-      left[1] -= 1;
-
-      let right = this.getArrayPosition(id);
-      right[1] += 1;
-
-      let downRight = this.getArrayPosition(id);
-      downRight[0] += 1;
-      if(downRight[0] <= 2){
-        downRight[1] += 1;
-      }
-      
-      let downLeft = this.getArrayPosition(id);
-      downLeft[0] += 1;
-      downLeft[1] -= 1;
-      if(downLeft[0] <= 2){
-        downLeft[1] += 1;
-      }
-
-      let center = this.getArrayPosition(id);
-
-      // Check if hexs are valid, if so toggle them
-      if(this.isValidHex(upRight[0], upRight[1])){
-        this.toggleHex([upRight[0], upRight[1]]);
-      }
-      if(this.isValidHex(upLeft[0], upLeft[1])){
-        this.toggleHex([upLeft[0], upLeft[1]]);
-      }
-      if(this.isValidHex(left[0], left[1])){
-        this.toggleHex([left[0], left[1]]);
-      }
-      if(this.isValidHex(right[0], right[1])){
-        this.toggleHex([right[0], right[1]]);
-      }
-      if(this.isValidHex(downRight[0], downRight[1])){
-        this.toggleHex([downRight[0], downRight[1]]);
-      }
-      if(this.isValidHex(downLeft[0], downLeft[1])){
-        this.toggleHex([downLeft[0], downLeft[1]]);
-      }
-      if(this.isValidHex(center[0], center[1])){
-        this.toggleHex([center[0], center[1]]);
-      }
+      this.toggleNeighborTopLeft(hex);
+      this.toggleNeighborTopRight(hex);
+      this.toggleNeighborLeft(hex);
+      this.toggleNeighborRight(hex);
+      this.toggleNeighborBottomLeft(hex);
+      this.toggleNeighborBottomRight(hex);
     },
 
     toggleNeighborLeft: function(hex){

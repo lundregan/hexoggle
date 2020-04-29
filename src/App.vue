@@ -62,6 +62,7 @@
   import level_1_2 from './levels/1-2.json';
   import level_2_1 from './levels/2-1.json';
   import level_2_2 from './levels/2-2.json';
+  import level_2_3 from './levels/2-3.json';
 
 export default {
 
@@ -706,7 +707,7 @@ export default {
             },
             {
               name: '2-3',
-              data: level_1_1,
+              data: level_2_3,
               completed: false,
               bestMoves: null
             },

@@ -1,5 +1,5 @@
 # hexoggle
-<<<<<<< HEAD
+Small puzzle game using vue.js
 
 ## Project setup
 ```
@@ -24,5 +24,3 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 =======
-Small puzzle game using vue.js
->>>>>>> f3eddc6de3742939c19583c1181991ce1e4c33ea

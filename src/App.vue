@@ -362,7 +362,7 @@ export default {
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
-
+      // Handles detection and function call for each hex type
       if(hex.type == 'normal'){
         this.changeColor(hex);
       }
@@ -449,9 +449,7 @@ export default {
 
   data: function() {
     return {
-      test: 'NA',
-
-      gameState: {
+        gameState: {
         currentLevel: null,
         currentMoves: 0
       },

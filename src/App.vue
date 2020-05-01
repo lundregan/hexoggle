@@ -13,7 +13,7 @@
           <li class='world' v-for='world in worlds' :key='world.id'>
             <p class='world-title' v-on:click='openWorldLevels(world)'> {{ world.name }} </p>
 
-            <transition name='fade'>
+            <transition name='slideIn'>
             <ul class='level-list level-nav-ul' v-if='world.open'>
               <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
                 <p class='level-title' v-on:click='changeLevel(level);'> {{ level.name }} </p> 
@@ -861,10 +861,10 @@ export default {
 
 /* ANIMATIONS (VUE TRANISTIONS)*/
 
-.fade-enter-active, .fade-leave-active {
+.slideIn-enter-active, .slideIn-leave-active {
   transition: 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.slideIn-enter, .slideIn-leave-to /* .slideIn-leave-active below version 2.1.8 */ {
   transform: translate3d(-100%, 0, 0);
 }
 

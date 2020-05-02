@@ -2,73 +2,73 @@
     {
         "i": "0",
         "j": "0",
-        "type": "singleNeighborRight",
-        "toggled": false  
+        "type": "normal",
+        "toggled": true  
     },
     {
         "i": "0",
         "j": "1",
-        "type": "singleNeighborRight",
-        "toggled": false 
+        "type": "normal",
+        "toggled": true 
     },
     {
         "i": "0",
-        "j": "2",
-        "type": "singleNeighborBottomRight",
-        "toggled": false  
-    },
-    {
-        "i": "1",
-        "j": "0",
-        "type": "singleNeighborRight",
-        "toggled": false   
-    },
-    {
-        "i": "1",
-        "j": "1",
-        "type": "singleNeighborRight",
-        "toggled": false    
-    },
-    {
-        "i": "1",
-        "j": "2",
-        "type": "singleNeighborBottomRight",
-        "toggled": false    
-    },
-    {
-        "i": "1",
-        "j": "3",
-        "type": "singleNeighborBottomRight",
-        "toggled": false    
-    },
-    {
-        "i": "2",
-        "j": "0",
-        "type": "singleNeighborTopRight",
-        "toggled": false    
-    },
-    {
-        "i": "2",
-        "j": "1",
-        "type": "singleNeighborRight",
-        "toggled": false  
-    },
-    {
-        "i": "2",
         "j": "2",
         "type": "normal",
         "toggled": true  
     },
     {
+        "i": "1",
+        "j": "0",
+        "type": "normal",
+        "toggled": true   
+    },
+    {
+        "i": "1",
+        "j": "1",
+        "type": "normal",
+        "toggled": false    
+    },
+    {
+        "i": "1",
+        "j": "2",
+        "type": "normal",
+        "toggled": false    
+    },
+    {
+        "i": "1",
+        "j": "3",
+        "type": "normal",
+        "toggled": true    
+    },
+    {
+        "i": "2",
+        "j": "0",
+        "type": "singleNeighborRight",
+        "toggled": false    
+    },
+    {
+        "i": "2",
+        "j": "1",
+        "type": "normal",
+        "toggled": false  
+    },
+    {
+        "i": "2",
+        "j": "2",
+        "type": "neighbors",
+        "toggled": false  
+    },
+    {
         "i": "2",
         "j": "3",
-        "type": "singleNeighborBottomLeft",
+        "type": "normal",
         "toggled": false  
     },
     {
         "i": "2",
         "j": "4",
-        "type": "singleNeighborBottomLeft",
+        "type": "singleNeighborLeft",
         "toggled": false    
     },
     {
@@ -80,37 +80,37 @@
     {
         "i": "3",
         "j": "1",
-        "type": "singleNeighborTopLeft",
+        "type": "singleNeighborLeft",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "2",
-        "type": "singleNeighborLeft",
+        "type": "singleNeighborRight",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "3",
-        "type": "singleNeighborBottomLeft",
+        "type": "singleNeighborTopRight",
         "toggled": false   
     },
     {
         "i": "4",
         "j": "0",
-        "type": "singleNeighborTopLeft",
-        "toggled": false   
+        "type": "normal",
+        "toggled": true   
     },
     {
         "i": "4",
         "j": "1",
-        "type": "singleNeighborLeft",
-        "toggled": false  
+        "type": "normal",
+        "toggled": true  
     },
     {
         "i": "4",
         "j": "2",
-        "type": "singleNeighborLeft",
-        "toggled": false   
+        "type": "normal",
+        "toggled": true   
     }
 ]

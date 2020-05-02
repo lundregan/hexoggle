@@ -13,11 +13,13 @@
           <li class='world' v-for='world in worlds' :key='world.id'>
             <p class='world-title' v-on:click='openWorldLevels(world)'> {{ world.name }} </p>
 
+            <transition name='slideIn'>
             <ul class='level-list level-nav-ul' v-if='world.open'>
               <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
                 <p class='level-title' v-on:click='changeLevel(level);'> {{ level.name }} </p> 
                 </li>
             </ul>
+            </transition>
           </li>
         </ul>
       </aside>
@@ -32,10 +34,15 @@
         
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
-            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y' v->
               <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
+              <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
+              <rect v-if='hexagon.type == "singleNeighborBottomLeft"' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborBottomRight"' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborTopLeft"' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
+              <rect v-if='hexagon.type == "singleNeighborTopRight"' width='10px' height='100px' style='x: 20; y: 76; transform: rotate(-60deg)' />
             </svg>
           </svg>
         </svg>
@@ -57,6 +64,7 @@
   import level_1_2 from './levels/1-2.json';
   import level_2_1 from './levels/2-1.json';
   import level_2_2 from './levels/2-2.json';
+  import level_2_3 from './levels/2-3.json';
 
 export default {
 
@@ -106,6 +114,7 @@ export default {
       }
         
       alert('Level Complete');
+      this.gameState.currentMoves = 0;
       this.nextLevel();
 
       this.saveState();
@@ -138,7 +147,7 @@ export default {
     },
 
     nextLevel: function(){
-      this.incrementLevel(+1);
+      this.incrementLevel(1);
     },
 
     prevLevel: function(){
@@ -146,21 +155,21 @@ export default {
     },
 
     incrementLevel: function(increment){
-      let newLevel = null;
+      var newLevel = null;
 
-      for(let x = 0; x < this.worlds.length; x++){
-        for(let y = 1; y < this.worlds[x].levels.length; y++){
+      for(var x = 0; x < this.worlds.length; x++){
+        for(var y = 0; y < this.worlds[x].levels.length; y++){
           if(this.worlds[x].levels[y] == this.gameState.currentLevel){
-            newLevel = this.worlds[x].levels[y + increment];
-          }
+            if(this.isValidHex(x, y + increment)){
+              newLevel = this.worlds[x].levels[y + increment];
+            }
+          } 
         }
       }
-
+      
       if(newLevel != null){
         this.changeLevel(newLevel);
       }
-
-      this.resetCurrentMoves();
     },
 
 
@@ -175,7 +184,103 @@ export default {
 
     toggleHex: function(pos){
       let hexagon = this.hexagons[pos[0]][pos[1]];
-      this.changeColor(hexagon);    
+      this.changeColor(hexagon);
+    },
+
+    getLeftHex: function(hex){
+      var leftHexPosition = this.getArrayPosition(hex.id);
+      leftHexPosition[1] -= 1;
+
+      return this.getHexagonFromArrayPosition(leftHexPosition[0], leftHexPosition[1]);
+    },
+    
+    getRightHex: function(hex){
+      var rightHexPosition = this.getArrayPosition(hex.id);
+      rightHexPosition[1] += 1;
+
+      return this.getHexagonFromArrayPosition(rightHexPosition[0], rightHexPosition[1]);
+    },
+
+    getBottomLeftHex: function(hex){
+      var bottomLeftHexPosition = this.getArrayPosition(hex.id);
+      bottomLeftHexPosition[0] += 1;
+      bottomLeftHexPosition[1] -= 1;
+
+      if(bottomLeftHexPosition[0] <= 2){
+        bottomLeftHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(bottomLeftHexPosition[0], bottomLeftHexPosition[1]);
+    },
+
+    getBottomRightHex: function(hex){
+      var bottomRightHexPosition = this.getArrayPosition(hex.id);
+      bottomRightHexPosition[0] += 1;
+
+      if(bottomRightHexPosition[0] <= 2){
+        bottomRightHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(bottomRightHexPosition[0], bottomRightHexPosition[1]);
+    },
+
+    getTopLeftHex: function(hex){
+      var topLeftHexPosition = this.getArrayPosition(hex.id);
+      topLeftHexPosition[0] -= 1;
+      topLeftHexPosition[1] -= 1;
+
+      if(topLeftHexPosition[0] >= 2){
+        topLeftHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(topLeftHexPosition[0], topLeftHexPosition[1]);
+    },
+
+    getTopRightHex: function(hex){
+      var topRightHexPosition = this.getArrayPosition(hex.id);
+      topRightHexPosition[0] -= 1;
+
+      if(topRightHexPosition[0] >= 2){
+        topRightHexPosition[1] += 1;
+      }
+
+      return this.getHexagonFromArrayPosition(topRightHexPosition[0], topRightHexPosition[1]);
+    },
+
+    toggleLeftHex: function(currentHex){
+      var leftHex = this.getLeftHex(currentHex);
+
+      this.executeHexagonAction(leftHex);
+    },
+
+    toggleRightHex: function(currentHex){
+      var rightHex = this.getRightHex(currentHex);
+
+      this.executeHexagonAction(rightHex);
+    },
+
+    toggleBottomLeftHex: function(currentHex){
+      var bottomLeftHex = this.getBottomLeftHex(currentHex);
+
+      this.executeHexagonAction(bottomLeftHex);
+    },
+
+    toggleBottomRightHex: function(currentHex){
+      var bottomRightHex = this.getBottomRightHex(currentHex);
+
+      this.executeHexagonAction(bottomRightHex);
+    },
+
+    toggleTopLeftHex: function(currentHex){
+      var topLeftHex = this.getTopLeftHex(currentHex);
+
+      this.executeHexagonAction(topLeftHex);
+    },
+
+    toggleTopRightHex: function(currentHex){
+      var topRightHex = this.getTopRightHex(currentHex);
+
+      this.executeHexagonAction(topRightHex);
     },
 
     changeColor: function(hex){
@@ -259,107 +364,95 @@ export default {
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
-
+      // Handles detection and function call for each hex type
       if(hex.type == 'normal'){
         //this.changeColor(hex);
         this.toggleCenter(hex);
       }
 
       if(hex.type == 'neighbors'){
-        this.toggleNeighbors(hex.id);
+        this.toggleNeighbors(hex);
+      }
+
+      if(hex.type == 'singleNeighborLeft'){
+        //this.toggleNeighborRight(hex.id);
+        this.toggleNeighborLeft(hex);
       }
 
       if(hex.type == 'singleNeighborRight'){
-        this.toggleNeighborRight(hex.id);
+        //this.toggleNeighborRight(hex.id);
+        this.toggleNeighborRight(hex);
+      }
+
+      if(hex.type == 'singleNeighborBottomLeft'){
+        this.toggleNeighborBottomLeft(hex);
+      }
+
+      if(hex.type == 'singleNeighborBottomRight'){
+        this.toggleNeighborBottomRight(hex);
+      }
+
+      if(hex.type == 'singleNeighborTopLeft'){
+        this.toggleNeighborTopLeft(hex);
+      }
+      
+      if(hex.type == 'singleNeighborTopRight'){
+        this.toggleNeighborTopRight(hex);
       }
     },
     
-    toggleNeighbors: function(id){
-
-      let upRight = this.getArrayPosition(id);
-      upRight[0] -= 1;
-      if(upRight[0] >= 2){
-        upRight[1] += 1;
-      }
-
-      let upLeft = this.getArrayPosition(id);
-      upLeft[0] -= 1;
-      upLeft[1] -= 1;
-      if(upLeft[0] >= 2){
-        upLeft[1] += 1;
-      }
-
-      let left = this.getArrayPosition(id);
-      left[1] -= 1;
-
-      let right = this.getArrayPosition(id);
-      right[1] += 1;
-
-      let downRight = this.getArrayPosition(id);
-      downRight[0] += 1;
-      if(downRight[0] <= 2){
-        downRight[1] += 1;
-      }
-      
-      let downLeft = this.getArrayPosition(id);
-      downLeft[0] += 1;
-      downLeft[1] -= 1;
-      if(downLeft[0] <= 2){
-        downLeft[1] += 1;
-      }
-
-      let center = this.getArrayPosition(id);
-
-      // Check if hexs are valid, if so toggle them
-      if(this.isValidHex(upRight[0], upRight[1])){
-        this.toggleHex([upRight[0], upRight[1]]);
-      }
-      if(this.isValidHex(upLeft[0], upLeft[1])){
-        this.toggleHex([upLeft[0], upLeft[1]]);
-      }
-      if(this.isValidHex(left[0], left[1])){
-        this.toggleHex([left[0], left[1]]);
-      }
-      if(this.isValidHex(right[0], right[1])){
-        this.toggleHex([right[0], right[1]]);
-      }
-      if(this.isValidHex(downRight[0], downRight[1])){
-        this.toggleHex([downRight[0], downRight[1]]);
-      }
-      if(this.isValidHex(downLeft[0], downLeft[1])){
-        this.toggleHex([downLeft[0], downLeft[1]]);
-      }
-      if(this.isValidHex(center[0], center[1])){
-        this.toggleHex([center[0], center[1]]);
-      }
-    },
-
-    toggleNeighborRight: function(id){
-      let center = this.getArrayPosition(id);
-      
-      let right = this.getArrayPosition(id);
-      right[1] += 1;
-
-      if(this.isValidHex(right[0], right[1])){
-        this.toggleHex([right[0], right[1]]);
-      }
-
-      if(this.isValidHex(center[0], center[1])){
-        this.toggleHex([center[0], center[1]]);
-      }
-    },
-
-    toggleCenter:function(hex){
+    toggleNeighbors: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleNeighborTopLeft(hex);
+      this.toggleNeighborTopRight(hex);
+      this.toggleNeighborLeft(hex);
+      this.toggleNeighborRight(hex);
+      this.toggleNeighborBottomLeft(hex);
+      this.toggleNeighborBottomRight(hex);
+    },
+
+    toggleNeighborLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleLeftHex(hex);
+    },
+
+    toggleNeighborRight: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleRightHex(hex);
+    },
+
+    toggleNeighborBottomRight: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleBottomRightHex(hex);
+    },
+
+    toggleNeighborBottomLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleBottomLeftHex(hex);
+    },
+
+    toggleNeighborTopLeft: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleTopLeftHex(hex);
+    },
+
+    toggleNeighborTopRight: function(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
+
+      this.toggleTopRightHex(hex);
     }
   },
 
 
   data: function() {
     return {
-      test: 'NA',
-
-      gameState: {
+        gameState: {
         currentLevel: null,
         currentMoves: 0
       },
@@ -526,7 +619,7 @@ export default {
       worlds: [
         {
           name: 'World 1',
-          open: false,
+          open: true,
           levels: [
             {
               name: '1-0',
@@ -550,7 +643,7 @@ export default {
         },
         {
           name: 'World 2',
-          open: true,
+          open: false,
           levels: [
             {
               name: '2-1',
@@ -566,7 +659,7 @@ export default {
             },
             {
               name: '2-3',
-              data: level_1_1,
+              data: level_2_3,
               completed: false,
               bestMoves: null
             },
@@ -765,6 +858,15 @@ export default {
 
   background-color: #2b2b2b;
   color:            #e20b00;
+}
+
+/* ANIMATIONS (VUE TRANISTIONS)*/
+
+.slideIn-enter-active, .slideIn-leave-active {
+  transition: 0.5s;
+}
+.slideIn-enter, .slideIn-leave-to /* .slideIn-leave-active below version 2.1.8 */ {
+  transform: translate3d(-100%, 0, 0);
 }
 
 </style>

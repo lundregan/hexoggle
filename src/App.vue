@@ -53,6 +53,10 @@
           <button class='level-change-next' v-on:click='nextLevel()'>Next</button>
         </div>
 
+        <div clss='progress-reset'>
+          <button class='level-resetAllProgress' v-on:click='resetAllProgress()'>Reset All Progress</button>
+        </div>
+
       </div>
     </div>     
   </div>
@@ -144,6 +148,8 @@ export default {
 
     resetAllProgress: function(){
       localStorage.removeItem('worlds');
+
+      location.reload();
     },
 
     nextLevel: function(){
@@ -399,6 +405,10 @@ export default {
       if(hex.type == 'singleNeighborTopRight'){
         this.toggleNeighborTopRight(hex);
       }
+    },
+
+    toggleCenter(hex){
+      this.toggleHex(this.getArrayPosition(hex.id));
     },
     
     toggleNeighbors: function(hex){
@@ -849,6 +859,24 @@ export default {
   min-height: 40px;
   height: 5vh;
   width: 5vh;
+
+  border: none;
+  border-radius: 10px;
+
+  font-weight: bold;
+  font-size: calc(((1vw + 1vh) / 2) + 1px);
+
+  background-color: #2b2b2b;
+  color:            #e20b00;
+}
+
+.level-resetAllProgress {
+  margin: 5px 20px 0 20px;
+
+  min-width: 60px;
+  min-height: 40px;
+  height: 5vh;
+  width: 20vh;
 
   border: none;
   border-radius: 10px;

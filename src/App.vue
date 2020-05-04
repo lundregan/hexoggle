@@ -692,6 +692,28 @@ export default {
 
 * {
   margin: 0;
+
+  /* CSS Variables */
+
+  --app-color-bg: #474747;
+  --app-color-primary-text: #FF7A00;
+
+  --title-color-bg: #121212;
+  --title-color: #FF7A00;
+
+  --level-color-bg: #121212;
+  --level-selectTitle-color: #FFFFFF;
+  --level-complete-color: green;
+  --level-notComplete-color: #FA4E5D;
+
+  --world-color-bg: #3a3a3a;
+  --world-color: #FFFFFF;
+
+  --hex-toggled-color: green;
+  --hex-notToggled-color: red;
+
+  --button-color-bg: #2b2b2b;
+  --button-reset-text-color: #e20b00;
 }
 
 #app {
@@ -703,7 +725,7 @@ export default {
   width: 100%;
   height: 100%;
   
-  background-color: #474747;
+  background-color: var(--app-color-bg);
 }
 
 /* Title header */
@@ -718,14 +740,14 @@ export default {
   font-weight: bold;
   text-align: left;
 
-  background-color: #121212;
-  color:            #FF7A00;
+  background-color: var(--title-color-bg);
+  color:            var(--title-color);
 }
 
 /* Level Select Menu */
 .level-nav {
   text-align: left;
-  background-color: #121212;
+  background-color: var(--level-color-bg);
   opacity: 0.7; 
   width: 10%;
   height: 100%;
@@ -739,7 +761,7 @@ export default {
   font-size: 2rem;
   text-align: center;
 
-  color: #FFFFFF;
+  color: var(--level-selectTitle-color);
 }
 
 .level-nav-ul {
@@ -761,8 +783,8 @@ export default {
   text-align: center;
   font-size: 1.5rem;
 
-  background-color: #3a3a3a;
-  color: #ffffff;
+  background-color: var(--world-color-bg);
+  color: var(--world-color);
 }
 
 
@@ -776,11 +798,11 @@ export default {
 }
 
 .levelComplete {
-  background-color: green;
+  background-color: var(--level-complete-color);
 }
 
 .levelNotComplete {
-  background-color: #FA4E5D;
+  background-color: var(--level-notComplete-color);
 }
 
 /* Game */
@@ -798,10 +820,10 @@ export default {
 
 /* Hexagons */
 .hexToggled {
-  fill: green;
+  fill: var(--hex-toggled-color);
 }
 .hexNotToggled {
-  fill: red;
+  fill: var(--hex-notToggled-color);
 }
 
 .hexagon-svg {
@@ -813,18 +835,18 @@ export default {
 .stat-level {
   margin: 10px 0 0 0;
 
-  color: #FF7A00;
+  color: var(--app-color-primary-text);
 }
 .stat-completed {
   margin: 10px 0 0 0;
 
-  color:#FF7A00;
+  color: var(--app-color-primary-text);
 }
 
 .stat-moves {
   margin: 30px 0 0 10px;
 
-  color: #FF7A00;
+  color: var(--app-color-primary-text);
 }
 
 /* Level Switcher & Reset*/
@@ -848,8 +870,8 @@ export default {
   font-weight: bold;
   font-size: calc((1vw + 1vh) / 2);
 
-  background-color: #2b2b2b;
-  color:            #FF7A00;
+  background-color: var(--button-color-bg);
+  color:            var(--app-color-primary-text);
 }
 
 .level-change-reset{
@@ -866,8 +888,8 @@ export default {
   font-weight: bold;
   font-size: calc(((1vw + 1vh) / 2) + 1px);
 
-  background-color: #2b2b2b;
-  color:            #e20b00;
+  background-color: var(--button-color-bg);
+  color:            var(--button-reset-text-color);
 }
 
 .level-resetAllProgress {
@@ -884,8 +906,8 @@ export default {
   font-weight: bold;
   font-size: calc(((1vw + 1vh) / 2) + 1px);
 
-  background-color: #2b2b2b;
-  color:            #e20b00;
+  background-color: var(--button-color-bg);
+  color:            var(--button-reset-text-color);
 }
 
 /* ANIMATIONS (VUE TRANISTIONS)*/

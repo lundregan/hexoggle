@@ -5,8 +5,12 @@
       <h1 class='title'>Hexoggle</h1>
     </div>
     <div id="game" style='display: flex;'>
+      
+      <button class='openMenuButton' v-if='!menuOpen' v-on:click='menuOpen = true'>|||</button>
 
-      <aside class='level-nav'>
+      <aside class='level-nav' v-if='menuOpen'>
+        <button v-on:click='menuOpen = !menuOpen' style='width: 100%; height: 30px;'>X</button>
+
         <p class='level-select-title'>Level Select</p>
 
         <ul class='world-list level-nav-ul'>
@@ -465,7 +469,9 @@ export default {
         gameState: {
         currentLevel: null,
         currentMoves: 0
-      },
+        },
+
+      menuOpen: false,
 
       hexagonData: {
         points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'

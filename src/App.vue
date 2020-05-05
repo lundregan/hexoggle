@@ -9,7 +9,7 @@
       <button class='openMenuButton' v-if='!menuOpen' v-on:click='menuOpen = true'>|||</button>
 
       <aside class='level-nav' v-if='menuOpen'>
-        <button v-on:click='menuOpen = !menuOpen' style='width: 100%; height: 30px;'>X</button>
+        <button class='closeMenuButton' v-on:click='menuOpen = !menuOpen'>X</button>
 
         <p class='level-select-title'>Level Select</p>
 
@@ -772,6 +772,27 @@ export default {
 
 .level-nav-ul {
   list-style-type: none;
+}
+
+.openMenuButton {
+  width: 5%;
+  max-width: 40px;
+
+  border: none;
+
+  background-color: var(--level-color-bg);
+  color: var(--app-color-primary-text);
+}
+
+.closeMenuButton {
+  width: 100%;
+  height: 30px;
+
+  font-size: 1.5rem;
+
+  border: none;
+  background-color: var(--level-color-bg);
+  color: var(--app-color-primary-text);
 }
 
 /* Worlds */

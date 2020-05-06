@@ -203,6 +203,11 @@ export default {
       },1000);
 
       this.changeColor(hexagon);
+
+      setTimeout(
+        this.checkWinCondition,
+        100
+      );
     },
 
     getLeftHex: function(hex){

@@ -462,37 +462,57 @@ export default {
     toggleNeighborLeft: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
 
-      this.toggleLeftHex(hex);
+      setTimeout(
+        this.toggleLeftHex,
+        100,
+        hex
+      );
     },
 
     toggleNeighborRight: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
 
-      this.toggleRightHex(hex);
+      setTimeout(
+        this.toggleRightHex,
+        100,
+        hex
+      );
     },
 
     toggleNeighborBottomRight: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
-
-      this.toggleBottomRightHex(hex);
+      setTimeout(
+        this.toggleBottomRightHex,
+        100,
+        hex
+      );
     },
 
     toggleNeighborBottomLeft: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
-
-      this.toggleBottomLeftHex(hex);
+      setTimeout(
+        this.toggleBottomLeftHex,
+        100,
+        hex
+      );
     },
 
     toggleNeighborTopLeft: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
-
-      this.toggleTopLeftHex(hex);
+      setTimeout(
+        this.toggleTopLeftHex,
+        100,
+        hex
+      );
     },
 
     toggleNeighborTopRight: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
-
-      this.toggleTopRightHex(hex);
+      setTimeout(
+        this.toggleTopRightHex,
+        100,
+        hex
+      );
     }
   },
 

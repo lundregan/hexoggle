@@ -8,25 +8,27 @@
       
       <button class='openMenuButton' v-if='!menuOpen' v-on:click='menuOpen = true'>|||</button>
 
-      <aside class='level-nav' v-if='menuOpen'>
-        <button class='closeMenuButton' v-on:click='menuOpen = !menuOpen'>X</button>
+      <transition name='slideIn'>
+        <aside class='level-nav' v-if='menuOpen'>
+          <button class='closeMenuButton' v-on:click='menuOpen = !menuOpen'>X</button>
 
-        <p class='level-select-title'>Level Select</p>
+          <p class='level-select-title'>Level Select</p>
 
-        <ul class='world-list level-nav-ul'>
-          <li class='world' v-for='world in worlds' :key='world.id'>
-            <p class='world-title' v-on:click='openWorldLevels(world)'> {{ world.name }} </p>
+          <ul class='world-list level-nav-ul'>
+            <li class='world' v-for='world in worlds' :key='world.id'>
+              <p class='world-title' v-on:click='openWorldLevels(world)'> {{ world.name }} </p>
 
-            <transition name='slideIn'>
-            <ul class='level-list level-nav-ul' v-if='world.open'>
-              <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
-                <p class='level-title' v-on:click='changeLevel(level);'> {{ level.name }} </p> 
-                </li>
-            </ul>
-            </transition>
-          </li>
-        </ul>
-      </aside>
+              <transition name='slideIn'>
+              <ul class='level-list level-nav-ul' v-if='world.open'>
+                <li class='level' v-for='level in world.levels' :key='level.id' v-bind:class='{ levelComplete : level.completed, levelNotComplete : !level.completed }'> 
+                  <p class='level-title' v-on:click='changeLevel(level);'> {{ level.name }} </p> 
+                  </li>
+              </ul>
+              </transition>
+            </li>
+          </ul>
+        </aside>
+      </transition>
 
       <!-- Game Container -->
       <div class='game-container'>
@@ -39,7 +41,7 @@
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y' v->
-              <polygon class='hexagon-svg' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled }" v-on:click='hexagonClicked(hexagon)' />
+              <polygon class='hexagon-svg animated' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled, 'pulse' : hexagon.animation == 'pulse' }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
               <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />
               <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
@@ -194,6 +196,12 @@ export default {
 
     toggleHex: function(pos){
       let hexagon = this.hexagons[pos[0]][pos[1]];
+
+      hexagon.animation = 'pulse';
+      setTimeout(function(){
+        hexagon.animation = '';
+      },1000);
+
       this.changeColor(hexagon);
     },
 
@@ -485,7 +493,8 @@ export default {
             x: '200',
             y: '0',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 1,

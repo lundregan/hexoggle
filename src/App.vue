@@ -426,12 +426,37 @@ export default {
     toggleNeighbors: function(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
 
-      this.toggleNeighborTopLeft(hex);
-      this.toggleNeighborTopRight(hex);
-      this.toggleNeighborLeft(hex);
-      this.toggleNeighborRight(hex);
-      this.toggleNeighborBottomLeft(hex);
-      this.toggleNeighborBottomRight(hex);
+      setTimeout(
+        this.toggleNeighborTopLeft,
+        100,
+        hex
+      );
+      setTimeout(
+        this.toggleNeighborTopRight,
+        200,
+        hex
+      );
+      setTimeout(
+        this.toggleNeighborRight,
+        300,
+        hex
+      );
+      setTimeout(
+        this.toggleNeighborBottomRight,
+        400,
+        hex
+      );
+      setTimeout(
+        this.toggleNeighborBottomLeft,
+        500,
+        hex
+      );
+      setTimeout(
+        this.toggleNeighborLeft,
+        600,
+        hex
+      );
+     
     },
 
     toggleNeighborLeft: function(hex){
@@ -479,7 +504,7 @@ export default {
         currentMoves: 0
         },
 
-      menuOpen: false,
+      menuOpen: true,
 
       hexagonData: {
         points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'
@@ -501,14 +526,16 @@ export default {
             x: '400',
             y: '0',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 2,
             x: '600',
             y: '0',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           }
         ],
         [
@@ -518,28 +545,32 @@ export default {
             x: '100',
             y: '175',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 4,
             x: '300',
             y: '175',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 5,
             x: '500',
             y: '175',
             type: 'neighbors',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 6,
             x: '700',
             y: '175',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           }
         ],
         [
@@ -549,14 +580,16 @@ export default {
             x: '0',
             y: '350',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 8,
             x: '200',
             y: '350',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             
@@ -564,7 +597,8 @@ export default {
             x: '400',
             y: '350',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             
@@ -572,7 +606,8 @@ export default {
             x: '600',
             y: '350',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             
@@ -580,7 +615,8 @@ export default {
             x: '800',
             y: '350',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           }
         ],
         [
@@ -590,21 +626,24 @@ export default {
             x: '100',
             y: '525',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 13,
             x: '300',
             y: '525',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 14,
             x: '500',
             y: '525',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             
@@ -612,7 +651,8 @@ export default {
             x: '700',
             y: '525',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           }
         ],
         [
@@ -622,21 +662,24 @@ export default {
             x: '200',
             y: '700',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 17,
             x: '400',
             y: '700',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           },
           {
             id: 18,
             x: '600',
             y: '700',
             type: 'normal',
-            toggled: false
+            toggled: false,
+            animation: ''
           }
         ]
       ],

@@ -40,7 +40,7 @@
         
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
-            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y' v->
+            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
               <polygon class='hexagon-svg animated' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled, 'pulse' : hexagon.animation == 'pulse' }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
               <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />

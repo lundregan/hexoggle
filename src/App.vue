@@ -141,8 +141,6 @@ export default {
     },
 
     saveState: function(){
-      localStorage.worlds = JSON.stringify(this.worlds);
-
       var saveData = [];
 
       for(var i = 0; i < this.worlds.length; i++){

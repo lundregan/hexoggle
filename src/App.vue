@@ -88,8 +88,30 @@ export default {
   },
 
   mounted: function(){
-    if (localStorage.worlds) {
-      this.worlds = JSON.parse(localStorage.worlds);
+    //if (localStorage.worlds) {
+    //  this.worlds = JSON.parse(localStorage.worlds);
+    //}
+
+    if(localStorage.hexoggleCompletedLevels){
+      var completedLevels = JSON.parse(localStorage.hexoggleCompletedLevels);
+      
+      console.log(completedLevels);
+
+      for(var i = 0; i < completedLevels.length; i++){
+        console.log('Entry');
+
+        let world = completedLevels[i].world;
+        let level = completedLevels[i].level;
+        let completed = completedLevels[i].completed;
+
+        this.worlds[world].levels[level].completed = completed;
+      }
+
+      //for(var i = 0; i < this.worlds.length; i++){
+      //  for(var j = 0; j < this.worlds ){
+      //
+      //  }
+      //}
     }
   },
 
@@ -132,6 +154,22 @@ export default {
 
     saveState: function(){
       localStorage.worlds = JSON.stringify(this.worlds);
+
+      var saveData = [];
+
+      for(var i = 0; i < this.worlds.length; i++){
+        for(var j = 0; j < this.worlds[i].levels.length; j++){
+          
+          let levelData = {
+            world: i,
+            level: j,
+            completed: this.worlds[i].levels[j].completed
+          }
+          saveData.push(levelData);
+        }
+      }
+
+      localStorage.hexoggleCompletedLevels = JSON.stringify(saveData);
     },
 
     changeLevel: function(level){
@@ -153,7 +191,7 @@ export default {
     },
 
     resetAllProgress: function(){
-      localStorage.removeItem('worlds');
+      localStorage.removeItem('hexoggleCompletedLevels');
 
       location.reload();
     },

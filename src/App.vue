@@ -413,37 +413,47 @@ export default {
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
-      // Handles detection and function call for each hex type
-      if(hex.type == 'normal'){
-        this.toggleCenter(hex);
-      }
+      const NORMAL = 'normal';
+      const NEIGHBORS = 'neighbors';
+      const NEIGHBOR_SINGLE_LEFT = 'singleNeighborLeft';
+      const NEIGHBOR_SINGLE_RIGHT = 'singleNeighborRight';
+      const NEIGHBOR_SINGLE_TOP_LEFT = 'singleNeighborTopLeft';
+      const NEIGHBOR_SINGLE_TOP_RIGHT = 'singleNeighborTopRight';
+      const NEIGHBOR_SINGLE_BOTTOM_LEFT = 'singleNeighborBottomLeft';
+      const NEIGHBOR_SINGLE_BOTTOM_Right = 'singleNeighborBottomRight';
 
-      if(hex.type == 'neighbors'){
-        this.toggleNeighbors(hex);
-      }
+      switch(hex.type){
+        case NORMAL:
+          this.toggleCenter(hex);
+          break;
 
-      if(hex.type == 'singleNeighborLeft'){
-        this.toggleNeighborLeft(hex);
-      }
+        case NEIGHBORS:
+          this.toggleNeighbors(hex);
+          break;
 
-      if(hex.type == 'singleNeighborRight'){
-        this.toggleNeighborRight(hex);
-      }
-
-      if(hex.type == 'singleNeighborBottomLeft'){
-        this.toggleNeighborBottomLeft(hex);
-      }
-
-      if(hex.type == 'singleNeighborBottomRight'){
-        this.toggleNeighborBottomRight(hex);
-      }
-
-      if(hex.type == 'singleNeighborTopLeft'){
-        this.toggleNeighborTopLeft(hex);
-      }
-      
-      if(hex.type == 'singleNeighborTopRight'){
-        this.toggleNeighborTopRight(hex);
+        case NEIGHBOR_SINGLE_LEFT:
+          this.toggleNeighborLeft(hex);
+          break;
+        
+        case NEIGHBOR_SINGLE_RIGHT:
+          this.toggleNeighborRight(hex);
+          break;
+        
+        case NEIGHBOR_SINGLE_TOP_LEFT:
+          this.toggleNeighborTopLeft(hex);
+          break;
+        
+        case NEIGHBOR_SINGLE_TOP_RIGHT:
+          this.toggleNeighborTopRight(hex);
+          break;
+        
+        case NEIGHBOR_SINGLE_BOTTOM_LEFT:
+          this.toggleNeighborBottomLeft(hex);
+          break;
+        
+        case NEIGHBOR_SINGLE_BOTTOM_Right:
+          this.toggleNeighborBottomRight(hex);
+          break;
       }
     },
 

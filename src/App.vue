@@ -88,17 +88,10 @@ export default {
   },
 
   mounted: function(){
-    //if (localStorage.worlds) {
-    //  this.worlds = JSON.parse(localStorage.worlds);
-    //}
-
     if(localStorage.hexoggleCompletedLevels){
       var completedLevels = JSON.parse(localStorage.hexoggleCompletedLevels);
-      
-      console.log(completedLevels);
 
       for(var i = 0; i < completedLevels.length; i++){
-        console.log('Entry');
 
         let world = completedLevels[i].world;
         let level = completedLevels[i].level;
@@ -107,11 +100,6 @@ export default {
         this.worlds[world].levels[level].completed = completed;
       }
 
-      //for(var i = 0; i < this.worlds.length; i++){
-      //  for(var j = 0; j < this.worlds ){
-      //
-      //  }
-      //}
     }
   },
 
@@ -427,7 +415,6 @@ export default {
     executeHexagonAction: function(hex){
       // Handles detection and function call for each hex type
       if(hex.type == 'normal'){
-        //this.changeColor(hex);
         this.toggleCenter(hex);
       }
 
@@ -436,12 +423,10 @@ export default {
       }
 
       if(hex.type == 'singleNeighborLeft'){
-        //this.toggleNeighborRight(hex.id);
         this.toggleNeighborLeft(hex);
       }
 
       if(hex.type == 'singleNeighborRight'){
-        //this.toggleNeighborRight(hex.id);
         this.toggleNeighborRight(hex);
       }
 

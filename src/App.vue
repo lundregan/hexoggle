@@ -40,15 +40,17 @@
         
         <svg viewBox='0 0 1000 1000' class='svg-viewbox'>
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
-            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>
+            <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>              
               <polygon class='hexagon-svg animated' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled, 'pulse' : hexagon.animation == 'pulse' }" v-on:click='hexagonClicked(hexagon)' />
               <circle v-if='hexagon.type == "neighbors"' cx="86" cy="100" r="70" stroke="gray" fill="black" stroke-width="5" v-on:click='hexagonClicked(hexagon)' />
-              <rect v-if='hexagon.type == "singleNeighborLeft"' x='15' y='50' width='10px' height='100px' />
-              <rect v-if='hexagon.type == "singleNeighborRight"' x='150' y='50' width='10px' height='100px' />
-              <rect v-if='hexagon.type == "singleNeighborBottomLeft"' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
-              <rect v-if='hexagon.type == "singleNeighborBottomRight"' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
-              <rect v-if='hexagon.type == "singleNeighborTopLeft"' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
-              <rect v-if='hexagon.type == "singleNeighborTopRight"' width='10px' height='100px' style='x: 20; y: 76; transform: rotate(-60deg)' />
+              <g v-if='"toggleNeighbors" in hexagon'>           
+                <rect v-if='hexagon.toggleNeighbors.left' x='15' y='50' width='10px' height='100px' />
+                <rect v-if='hexagon.toggleNeighbors.right' x='150' y='50' width='10px' height='100px' />
+                <rect v-if='hexagon.toggleNeighbors.leftBottom' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.rightBottom' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.leftTop' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.rightTop' width='10px' height='100px' style='x: 20; y: 76; transform: rotate(-60deg)' />
+              </g>
             </svg>
           </svg>
         </svg>
@@ -75,6 +77,9 @@
   import level_2_1 from './levels/2-1.json';
   import level_2_2 from './levels/2-2.json';
   import level_2_3 from './levels/2-3.json';
+
+  // testing level
+  import test_level from './levels/testing.json';
 
 export default {
 
@@ -391,8 +396,13 @@ export default {
       // Default set for every hexagon , false toggled (red) and type of normal
       for(let i = 0; i < this.hexagons.length; i++){
         for(let j = 0; j < this.hexagons[i].length; j++){
-          this.hexagons[i][j].type = 'normal';
-          this.hexagons[i][j].toggled = false;
+          var current_hexagon = this.hexagons[i][j];
+          
+          current_hexagon.type = 'normal';
+          current_hexagon.toggled = false;
+          if('toggleNeighbors' in current_hexagon){
+            delete current_hexagon.toggleNeighbors;
+          }
         } 
       }
     },
@@ -403,6 +413,12 @@ export default {
       // load each hex element
       json.forEach(item => { 
         this.loadHex(item.i, item.j, item.toggled, item.type); 
+
+        if("toggleNeighbors" in item){
+          //alert(item.toggleNeighbors);
+
+          this.hexagons[item.i][item.j].toggleNeighbors = item.toggleNeighbors;
+        }
       });
     },
 
@@ -422,6 +438,8 @@ export default {
       const NEIGHBOR_SINGLE_TOP_RIGHT = 'singleNeighborTopRight';
       const NEIGHBOR_SINGLE_BOTTOM_LEFT = 'singleNeighborBottomLeft';
       const NEIGHBOR_SINGLE_BOTTOM_Right = 'singleNeighborBottomRight';
+
+      const TEST = 'test';
 
       switch(hex.type){
         case NORMAL:
@@ -454,6 +472,10 @@ export default {
         
         case NEIGHBOR_SINGLE_BOTTOM_Right:
           this.toggleNeighborBottomRight(hex);
+          break;
+
+        case TEST:
+          this.testingFunction(hex);
           break;
       }
     },
@@ -552,16 +574,20 @@ export default {
         100,
         hex
       );
+    },
+
+    testingFunction: function(hex){
+      console.log(hex.toggleNeighbors);
     }
   },
 
 
   data: function() {
     return {
-        gameState: {
+      gameState: {
         currentLevel: null,
         currentMoves: 0
-        },
+      },
 
       menuOpen: true,
 
@@ -790,6 +816,18 @@ export default {
               completed: false,
               bestMoves: null
             },
+          ]
+        },
+        {
+          name: 'Testing World',
+          open: true,
+          levels: [
+            {
+              name: 'Testing Level 1',
+              data: test_level,
+              completed: true,
+              bestMoves: null
+            }
           ]
         }
       ]

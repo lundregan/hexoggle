@@ -3,55 +3,82 @@
         "i": "0",
         "j": "0",
         "type": "singleNeighborRight",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        }
     },
     {
         "i": "0",
         "j": "1",
         "type": "singleNeighborRight",
-        "toggled": false 
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        }
     },
     {
         "i": "0",
         "j": "2",
         "type": "singleNeighborBottomRight",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightBottom": true
+        }  
     },
     {
         "i": "1",
         "j": "0",
         "type": "singleNeighborRight",
-        "toggled": false   
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        }   
     },
     {
         "i": "1",
         "j": "1",
         "type": "singleNeighborRight",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        }   
     },
     {
         "i": "1",
         "j": "2",
         "type": "singleNeighborBottomRight",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightBottom": true
+        }
     },
     {
         "i": "1",
         "j": "3",
         "type": "singleNeighborBottomRight",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightBottom": true
+        }    
     },
     {
         "i": "2",
         "j": "0",
         "type": "singleNeighborTopRight",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightTop": true
+        }    
     },
     {
         "i": "2",
         "j": "1",
         "type": "singleNeighborRight",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        }
     },
     {
         "i": "2",
@@ -63,54 +90,81 @@
         "i": "2",
         "j": "3",
         "type": "singleNeighborBottomLeft",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftBottom": true
+        }
     },
     {
         "i": "2",
         "j": "4",
         "type": "singleNeighborBottomLeft",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftBottom": true
+        }    
     },
     {
         "i": "3",
         "j": "0",
         "type": "singleNeighborTopLeft",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftTop": true
+        }   
     },
     {
         "i": "3",
         "j": "1",
         "type": "singleNeighborTopLeft",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftTop": true
+        }    
     },
     {
         "i": "3",
         "j": "2",
         "type": "singleNeighborLeft",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "left": true
+        }
     },
     {
         "i": "3",
         "j": "3",
         "type": "singleNeighborBottomLeft",
-        "toggled": false   
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftBottom": true
+        }   
     },
     {
         "i": "4",
         "j": "0",
         "type": "singleNeighborTopLeft",
-        "toggled": false   
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftTop": true
+        }   
     },
     {
         "i": "4",
         "j": "1",
         "type": "singleNeighborLeft",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "left": true
+        }  
     },
     {
         "i": "4",
         "j": "2",
         "type": "singleNeighborLeft",
-        "toggled": false   
+        "toggled": false,
+        "toggleNeighbors": {
+            "left": true
+        }   
     }
 ]

@@ -2,26 +2,33 @@
     {
         "i": "0",
         "j": "0",
-        "type": "normal",
-        "toggled": true  
+        "type": "test",
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true,
+            "rightBottom": true
+        }
     },
     {
         "i": "0",
         "j": "1",
-        "type": "normal",
-        "toggled": true 
+        "type": "test",
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true
+        } 
     },
     {
         "i": "0",
         "j": "2",
         "type": "normal",
-        "toggled": true  
+        "toggled": false  
     },
     {
         "i": "1",
         "j": "0",
         "type": "normal",
-        "toggled": true   
+        "toggled": false   
     },
     {
         "i": "1",
@@ -33,22 +40,19 @@
         "i": "1",
         "j": "2",
         "type": "normal",
-        "toggled": false    
+        "toggled": false
     },
     {
         "i": "1",
         "j": "3",
         "type": "normal",
-        "toggled": true    
+        "toggled": false    
     },
     {
         "i": "2",
         "j": "0",
-        "type": "singleNeighborRight",
-        "toggled": false,
-        "toggleNeighbors": {
-            "right": true
-        }
+        "type": "normal",
+        "toggled": false    
     },
     {
         "i": "2",
@@ -59,8 +63,16 @@
     {
         "i": "2",
         "j": "2",
-        "type": "neighbors",
-        "toggled": false  
+        "type": "normal",
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true,
+            "left": true,
+            "rightTop": true,
+            "leftTop": true,
+            "rightBottom": true,
+            "leftBottom": true
+        }
     },
     {
         "i": "2",
@@ -71,64 +83,49 @@
     {
         "i": "2",
         "j": "4",
-        "type": "singleNeighborLeft",
-        "toggled": false,
-        "toggleNeighbors": {
-            "left": true
-        }    
+        "type": "normal",
+        "toggled": false    
     },
     {
         "i": "3",
         "j": "0",
-        "type": "singleNeighborTopLeft",
-        "toggled": false,
-        "toggleNeighbors": {
-            "leftTop": true
-        }    
+        "type": "normal",
+        "toggled": false    
     },
     {
         "i": "3",
         "j": "1",
-        "type": "singleNeighborLeft",
-        "toggled": false,
-        "toggleNeighbors": {
-            "left": true
-        }    
+        "type": "normal",
+        "toggled": false    
     },
     {
         "i": "3",
         "j": "2",
-        "type": "singleNeighborRight",
-        "toggled": false,
-        "toggleNeighbors": {
-            "right": true
-        }    
+        "type": "normal",
+        "toggled": false    
     },
     {
         "i": "3",
         "j": "3",
-        "type": "singleNeighborTopRight",
-        "toggled": false,
-        "toggleNeighbors": {
-            "rightTop": true
-        }  
+        "type": "normal",
+        "toggled": false   
     },
     {
         "i": "4",
         "j": "0",
         "type": "normal",
-        "toggled": true   
+        "toggled": false   
     },
     {
         "i": "4",
         "j": "1",
         "type": "normal",
-        "toggled": true  
+        "toggled": false  
     },
     {
         "i": "4",
         "j": "2",
         "type": "normal",
-        "toggled": true   
+        "toggled": false   
     }
 ]

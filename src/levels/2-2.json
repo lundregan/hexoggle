@@ -3,7 +3,10 @@
         "i": "0",
         "j": "0",
         "type": "singleNeighborBottomRight",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightBottom": true
+        }
     },
     {
         "i": "0",
@@ -15,7 +18,10 @@
         "i": "0",
         "j": "2",
         "type": "singleNeighborBottomLeft",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftBottom": true
+        }  
     },
     {
         "i": "1",
@@ -27,19 +33,25 @@
         "i": "1",
         "j": "1",
         "type": "singleNeighborBottomRight",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "rightBottom": true
+        }   
     },
     {
         "i": "1",
         "j": "2",
         "type": "singleNeighborBottomLeft",
-        "toggled": false    
+        "toggled": false,
+        "toggleNeighbors": {
+            "leftBottom": true
+        }    
     },
     {
         "i": "1",
         "j": "3",
         "type": "normal",
-        "toggled": true    
+        "toggled": true   
     },
     {
         "i": "2",

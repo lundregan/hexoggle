@@ -430,6 +430,8 @@ export default {
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
       if('toggleNeighbors' in hex){
+        this.toggleSelf(hex);
+        
         if('left' in hex.toggleNeighbors){
           this.toggleNeighborLeft(hex);
         }
@@ -448,51 +450,16 @@ export default {
         if('rightBottom' in hex.toggleNeighbors){
           this.toggleNeighborBottomRight(hex);
         }
+      } else {
+        this.toggleSelf(hex);
       }
     },
 
-    toggleCenter(hex){
+    toggleSelf(hex){
       this.toggleHex(this.getArrayPosition(hex.id));
-    },
-    
-    toggleNeighbors: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
-
-      setTimeout(
-        this.toggleNeighborTopLeft,
-        100,
-        hex
-      );
-      setTimeout(
-        this.toggleNeighborTopRight,
-        200,
-        hex
-      );
-      setTimeout(
-        this.toggleNeighborRight,
-        300,
-        hex
-      );
-      setTimeout(
-        this.toggleNeighborBottomRight,
-        400,
-        hex
-      );
-      setTimeout(
-        this.toggleNeighborBottomLeft,
-        500,
-        hex
-      );
-      setTimeout(
-        this.toggleNeighborLeft,
-        600,
-        hex
-      );
-     
     },
 
     toggleNeighborLeft: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
 
       setTimeout(
         this.toggleLeftHex,
@@ -502,7 +469,6 @@ export default {
     },
 
     toggleNeighborRight: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
 
       setTimeout(
         this.toggleRightHex,
@@ -512,7 +478,6 @@ export default {
     },
 
     toggleNeighborBottomRight: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
       setTimeout(
         this.toggleBottomRightHex,
         100,
@@ -521,7 +486,6 @@ export default {
     },
 
     toggleNeighborBottomLeft: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
       setTimeout(
         this.toggleBottomLeftHex,
         100,
@@ -530,7 +494,6 @@ export default {
     },
 
     toggleNeighborTopLeft: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
       setTimeout(
         this.toggleTopLeftHex,
         100,
@@ -539,7 +502,6 @@ export default {
     },
 
     toggleNeighborTopRight: function(hex){
-      this.toggleHex(this.getArrayPosition(hex.id));
       setTimeout(
         this.toggleTopRightHex,
         100,

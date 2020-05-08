@@ -60,7 +60,15 @@
         "i": "2",
         "j": "2",
         "type": "neighbors",
-        "toggled": false  
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true,
+            "left": true,
+            "rightTop": true,
+            "leftTop": true,
+            "rightBottom": true,
+            "leftBottom": true
+        }
     },
     {
         "i": "2",

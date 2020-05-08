@@ -397,7 +397,6 @@ export default {
         for(let j = 0; j < this.hexagons[i].length; j++){
           var current_hexagon = this.hexagons[i][j];
           
-          current_hexagon.type = 'normal';
           current_hexagon.toggled = false;
           if('toggleNeighbors' in current_hexagon){
             delete current_hexagon.toggleNeighbors;

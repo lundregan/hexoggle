@@ -429,53 +429,25 @@ export default {
 
     // -- Hexagon type behaviours --
     executeHexagonAction: function(hex){
-      const NORMAL = 'normal';
-      const NEIGHBORS = 'neighbors';
-      const NEIGHBOR_SINGLE_LEFT = 'singleNeighborLeft';
-      const NEIGHBOR_SINGLE_RIGHT = 'singleNeighborRight';
-      const NEIGHBOR_SINGLE_TOP_LEFT = 'singleNeighborTopLeft';
-      const NEIGHBOR_SINGLE_TOP_RIGHT = 'singleNeighborTopRight';
-      const NEIGHBOR_SINGLE_BOTTOM_LEFT = 'singleNeighborBottomLeft';
-      const NEIGHBOR_SINGLE_BOTTOM_Right = 'singleNeighborBottomRight';
-
-      const TEST = 'test';
-
-      switch(hex.type){
-        case NORMAL:
-          this.toggleCenter(hex);
-          break;
-
-        case NEIGHBORS:
-          this.toggleNeighbors(hex);
-          break;
-
-        case NEIGHBOR_SINGLE_LEFT:
+      if('toggleNeighbors' in hex){
+        if('left' in hex.toggleNeighbors){
           this.toggleNeighborLeft(hex);
-          break;
-        
-        case NEIGHBOR_SINGLE_RIGHT:
+        }
+        if('right' in hex.toggleNeighbors){
           this.toggleNeighborRight(hex);
-          break;
-        
-        case NEIGHBOR_SINGLE_TOP_LEFT:
+        }
+        if('leftTop' in hex.toggleNeighbors){
           this.toggleNeighborTopLeft(hex);
-          break;
-        
-        case NEIGHBOR_SINGLE_TOP_RIGHT:
+        }
+        if('rightTop' in hex.toggleNeighbors){
           this.toggleNeighborTopRight(hex);
-          break;
-        
-        case NEIGHBOR_SINGLE_BOTTOM_LEFT:
+        }
+        if('leftBottom' in hex.toggleNeighbors){
           this.toggleNeighborBottomLeft(hex);
-          break;
-        
-        case NEIGHBOR_SINGLE_BOTTOM_Right:
+        }
+        if('rightBottom' in hex.toggleNeighbors){
           this.toggleNeighborBottomRight(hex);
-          break;
-
-        case TEST:
-          this.testingFunction(hex);
-          break;
+        }
       }
     },
 

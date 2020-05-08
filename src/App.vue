@@ -96,8 +96,10 @@ export default {
         let world = completedLevels[i].world;
         let level = completedLevels[i].level;
         let completed = completedLevels[i].completed;
+        let bestMoves = completedLevels[i].bestMoves;
 
         this.worlds[world].levels[level].completed = completed;
+        this.worlds[world].levels[level].bestMoves = bestMoves;
       }
 
     }
@@ -124,7 +126,7 @@ export default {
 
     winCurrentLevel: function(){
       this.gameState.currentLevel.completed = true;
-        
+
       if(this.gameState.currentLevel.bestMoves == null){
         this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
       }else{
@@ -149,7 +151,8 @@ export default {
           let levelData = {
             world: i,
             level: j,
-            completed: this.worlds[i].levels[j].completed
+            completed: this.worlds[i].levels[j].completed,
+            bestMoves: this.worlds[i].levels[j].bestMoves
           }
           saveData.push(levelData);
         }

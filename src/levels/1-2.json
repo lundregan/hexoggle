@@ -51,7 +51,15 @@
         "i": "2",
         "j": "1",
         "type": "neighbors",
-        "toggled": false
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true,
+            "left": true,
+            "rightTop": true,
+            "leftTop": true,
+            "rightBottom": true,
+            "leftBottom": true
+        }
     },
     {
         "i": "2",
@@ -63,7 +71,15 @@
         "i": "2",
         "j": "3",
         "type": "neighbors",
-        "toggled": false 
+        "toggled": false,
+        "toggleNeighbors": {
+            "right": true,
+            "left": true,
+            "rightTop": true,
+            "leftTop": true,
+            "rightBottom": true,
+            "leftBottom": true
+        }
     },
     {
         "i": "2",

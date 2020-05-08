@@ -2,55 +2,46 @@
     {
         "i": "0",
         "j": "0",
-        "type": "normal",
         "toggled": true
     },
     {
         "i": "0",
         "j": "1",
-        "type": "normal",
         "toggled": true  
     },
     {
         "i": "0",
         "j": "2",
-        "type": "normal",
         "toggled": true   
     },
     {
         "i": "1",
         "j": "0",
-        "type": "normal",
         "toggled": false   
     },
     {
         "i": "1",
         "j": "1",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "1",
         "j": "2",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "1",
         "j": "3",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "2",
         "j": "0",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "2",
         "j": "1",
-        "type": "neighbors",
         "toggled": false,
         "toggleNeighbors": {
             "right": true,
@@ -64,13 +55,11 @@
     {
         "i": "2",
         "j": "2",
-        "type": "normal",
         "toggled": false  
     },
     {
         "i": "2",
         "j": "3",
-        "type": "neighbors",
         "toggled": false,
         "toggleNeighbors": {
             "right": true,
@@ -84,49 +73,41 @@
     {
         "i": "2",
         "j": "4",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "0",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "1",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "2",
-        "type": "normal",
         "toggled": false    
     },
     {
         "i": "3",
         "j": "3",
-        "type": "normal",
         "toggled": false   
     },
     {
         "i": "4",
         "j": "0",
-        "type": "normal",
         "toggled": true   
     },
     {
         "i": "4",
         "j": "1",
-        "type": "normal",
         "toggled": true  
     },
     {
         "i": "4",
         "j": "2",
-        "type": "normal",
         "toggled": true   
     }
 ]

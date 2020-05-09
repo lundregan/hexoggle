@@ -64,6 +64,8 @@
           <button class='level-resetAllProgress' v-on:click='resetAllProgress()'>Reset All Progress</button>
         </div>
 
+        <notifications group="level" />
+
       </div>
     </div>     
   </div>
@@ -138,8 +140,13 @@ export default {
           this.gameState.currentLevel.bestMoves = this.gameState.currentMoves;
         }
       }
-        
-      alert('Level Complete');
+
+      this.$notify({
+        group: 'level',
+        title: 'Level Complete',
+        text: 'You have completed the level yay!'
+      });
+
       this.gameState.currentMoves = 0;
       this.nextLevel();
 

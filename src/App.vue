@@ -64,7 +64,7 @@
           <button class='level-resetAllProgress' v-on:click='resetAllProgress()'>Reset All Progress</button>
         </div>
 
-        <notifications group="level" />
+        <notifications group="notifications" />
 
       </div>
     </div>     
@@ -142,7 +142,7 @@ export default {
       }
 
       this.$notify({
-        group: 'level',
+        group: 'notifications',
         title: 'Level Complete',
         text: 'You have completed the level yay!'
       });
@@ -193,7 +193,16 @@ export default {
     resetAllProgress: function(){
       localStorage.removeItem('hexoggleCompletedLevels');
 
-      location.reload();
+      this.$notify({
+        group: 'notifications',
+        title: 'Progress Reset',
+        text: 'All your progress has now been reset, reloading....'
+      });
+
+      setTimeout(
+        location.reload,
+        1000
+      );
     },
 
     nextLevel: function(){

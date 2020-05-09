@@ -819,11 +819,6 @@ export default {
   --button-reset-text-color: #e20b00;
 }
 
-#app {
-  width: 100vw;
-  height: 100vh;
-}
-
 #game{
   width: 100%;
   height: 100%;

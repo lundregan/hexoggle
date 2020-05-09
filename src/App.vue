@@ -848,7 +848,6 @@ export default {
   background-color: var(--level-color-bg);
   opacity: 0.7; 
   width: 10%;
-  height: 100%;
 }
 
 .level-select-title {

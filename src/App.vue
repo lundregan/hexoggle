@@ -240,8 +240,6 @@ export default {
       this.gameState.currentMoves += 1;
 
       this.executeHexagonAction(hex);
-
-      this.checkWinCondition();
     },
 
     toggleHex: function(pos){

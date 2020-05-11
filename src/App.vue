@@ -82,6 +82,9 @@
   // testing level
   import test_level from './levels/testing.json';
 
+  // Snake's World Levels
+  import snakes_1 from './levels/snakes-1.json';
+
 export default {
 
   name: 'App',
@@ -774,6 +777,18 @@ export default {
               name: 'Testing Level 1',
               data: test_level,
               completed: true,
+              bestMoves: null
+            }
+          ]
+        },
+        {
+          name: 'Snake\'s World',
+          open: true,
+          levels: [
+            {
+              name: 'Snakes 1',
+              data: snakes_1,
+              completed: false,
               bestMoves: null
             }
           ]

@@ -131,6 +131,8 @@ export default {
       if(win){
         this.winCurrentLevel();
       }
+
+      this.checkingWin = false;
     },
 
     winCurrentLevel: function(){
@@ -252,10 +254,14 @@ export default {
 
       this.changeColor(hexagon);
 
-      setTimeout(
-        this.checkWinCondition,
-        100
-      );
+      if(this.checkingWin == false){
+        this.checkingWin = true;
+        
+        setTimeout(
+          this.checkWinCondition,
+          1000
+        );
+      }
     },
 
     getLeftHex: function(hex){
@@ -539,6 +545,7 @@ export default {
       },
 
       menuOpen: true,
+      checkingWin: false,
 
       hexagonData: {
         points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'

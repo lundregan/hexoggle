@@ -42,13 +42,13 @@
           <svg v-for='row in hexagons' :key='row.id' class='svg-row'>
             <svg v-for='hexagon in row' :key='hexagon.id' v-bind:x='hexagon.x' v-bind:y='hexagon.y'>              
               <polygon class='hexagon-svg animated' v-bind:points='hexagonData.points' v-bind:class="{ hexToggled : hexagon.toggled, hexNotToggled : !hexagon.toggled, 'pulse' : hexagon.animation == 'pulse' }" v-on:click='hexagonClicked(hexagon)' />
-              <g v-if='"toggleNeighbors" in hexagon'>           
-                <rect v-if='hexagon.toggleNeighbors.left' x='15' y='50' width='10px' height='100px' />
-                <rect v-if='hexagon.toggleNeighbors.right' x='150' y='50' width='10px' height='100px' />
-                <rect v-if='hexagon.toggleNeighbors.leftBottom' width='10px' height='100px' style='x: -120; y: 76; transform: rotate(-60deg)' />
-                <rect v-if='hexagon.toggleNeighbors.rightBottom' width='10px' height='100px' style='x: 195; y: -76; transform: rotate(60deg)' />
-                <rect v-if='hexagon.toggleNeighbors.leftTop' width='10px' height='100px' style='x: 55; y: -76; transform: rotate(60deg)' />
-                <rect v-if='hexagon.toggleNeighbors.rightTop' width='10px' height='100px' style='x: 20; y: 76; transform: rotate(-60deg)' />
+              <g v-if='"toggleNeighbors" in hexagon' style='transform: scale(0.9) translateX(10px) translateY(10px);'>           
+                <rect v-if='hexagon.toggleNeighbors.left' x='0' y='50' width='10px' height='100px' />
+                <rect v-if='hexagon.toggleNeighbors.right' x='164' y='50' width='10px' height='100px' />
+                <rect v-if='hexagon.toggleNeighbors.leftBottom' width='10px' height='100px' style='x: -130; y: 76; transform: rotate(-60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.rightBottom' width='10px' height='100px' style='x: 207; y: -76; transform: rotate(60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.leftTop' width='10px' height='100px' style='x: 43; y: -75; transform: rotate(60deg)' />
+                <rect v-if='hexagon.toggleNeighbors.rightTop' width='10px' height='100px' style='x: 34; y: 76; transform: rotate(-60deg)' />
               </g>
             </svg>
           </svg>

@@ -1,12 +1,21 @@
-# hexoggle
-Small puzzle game using vue.js
+# Overview
 
-## Project setup
+Hexoggle is a Small puzzle game using built with Vue, so that I could learn the framework.
+
+Currently in Minimal Viable Product state, requires more work in regards to levels and adding game mechanics to be a proper game.
+
+[Play on Netlify](https://hexoggle.netlify.app/)
+
+
+
+## Local Project setup
+
+### Install Depnedancies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Compiles with Hot-reloading, Hosted Locally
 ```
 npm run serve
 ```
@@ -20,7 +29,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-=======

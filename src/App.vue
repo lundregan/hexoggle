@@ -198,7 +198,7 @@ export default {
       this.$notify({
         group: 'notifications',
         title: 'Progress Reset',
-        text: 'All your progress has now been reset, reloading....'
+        text: 'All your progress has now been reset, Please reload the browser!'
       });
 
       setTimeout(

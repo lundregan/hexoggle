@@ -32,7 +32,7 @@
 
       <!-- Game Container -->
       <div class='game-container'>
-        <div style='text-align: center;'>
+        <div class='info'>
           <span class="left"><p class='stat-level'> Level: {{ this.gameState.currentLevel.name }} </p></span>
           <p class='stat-completed' v-if='this.gameState.currentLevel.completed'> Personal Best - Moves: {{this.gameState.currentLevel.bestMoves}}</p>
           <span class="right"><p class='stat-moves'> Moves Made: {{ this.gameState.currentMoves }} </p></span>
@@ -58,12 +58,8 @@
           <button class='level-change-prev' v-on:click='prevLevel()'>Previous</button>
           <button class='level-change-reset' v-on:click='resetCurrentLevel()'>Reset</button>
           <button class='level-change-next' v-on:click='nextLevel()'>Next</button>
-        </div>
-
-        <div clss='progress-reset'>
           <button class='level-resetAllProgress' v-on:click='resetAllProgress()'>Reset All Progress</button>
         </div>
-
         <notifications group="notifications" />
 
       </div>
@@ -935,14 +931,16 @@ html {
 /* Game */
 .game-container{
   width: 100%;
+
+  display: flex;
 }
 
 /* SVG */
 .svg-viewbox {
-  margin: 20px 0 0 0;
+  margin: 35px 0 35px 0;
 
-  width: 70vw;
-  height: 70vh;
+  width: 50%;
+  height: 80vh;
 }
 
 /* Hexagons */
@@ -958,6 +956,12 @@ html {
 }
 
 /* Information and Game Controls */
+
+.info {
+  width: 25%;
+
+  text-align: center;
+}
 
 .stat-level {
   margin: 10px 0 0 0;
@@ -980,6 +984,8 @@ html {
 
 .level-switcher {
   margin-top: 20px;
+
+  width: 25%;
 }
 
 .level-change-prev, 

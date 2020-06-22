@@ -56,8 +56,9 @@
 
         <div class='level-switcher' style='margin-left: 6px;'> 
           <button class='level-change-prev' v-on:click='prevLevel()'>Previous</button>
-          <button class='level-change-reset' v-on:click='resetCurrentLevel()'>Reset</button>
           <button class='level-change-next' v-on:click='nextLevel()'>Next</button>
+
+          <button class='level-change-reset' v-on:click='resetCurrentLevel()'>Reset</button>
           <button class='level-resetAllProgress' v-on:click='resetAllProgress()'>Reset All Progress</button>
         </div>
         <notifications group="notifications" />
@@ -983,6 +984,9 @@ html {
 /* Level Switcher & Reset*/
 
 .level-switcher {
+  display: flex;
+  flex-direction: column;
+
   margin-top: 20px;
 
   width: 25%;
@@ -990,7 +994,7 @@ html {
 
 .level-change-prev, 
 .level-change-next{
-  margin: 0 20px 0 20px;
+  margin: 10px 20px 0 20px;
 
   min-width: 60px;
   min-height: 40px;
@@ -1008,7 +1012,7 @@ html {
 }
 
 .level-change-reset{
-  margin: 0 20px 0 20px;
+  margin: 50px 20px 0 20px;
 
   min-width: 60px;
   min-height: 40px;

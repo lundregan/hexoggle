@@ -4,7 +4,7 @@
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
 
-      <span class='viewing-mode'>
+      <span class='viewing-mode' v-on:click='darkMode = !darkMode'>
         <span class='dark-mode-icon' v-if='this.darkMode'>🌑</span>
         <span class='light-mode-icon' v-if='!this.darkMode'>🌕</span>
       </span>

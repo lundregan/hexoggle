@@ -3,6 +3,11 @@
 
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
+
+      <span class='viewing-mode'>
+        <span class='dark-mode-icon' v-if='this.darkMode'>🌑</span>
+        <span class='light-mode-icon' v-if='!this.darkMode'>🌕</span>
+      </span>
     </div>
     <div id="game" style='display: flex;'>
       
@@ -540,6 +545,7 @@ export default {
 
       menuOpen: true,
       checkingWin: false,
+      darkMode: true,
 
       hexagonData: {
         points: '87,0 174,50 174,150 87,200 0,150 0,50 87,0'
@@ -833,6 +839,12 @@ html {
 }
 
 /* Title header */
+.title-section {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--title-color-bg);
+}
+
 .title {
   padding: 0 0 0 10px;
 
@@ -844,7 +856,6 @@ html {
   font-weight: bold;
   text-align: left;
 
-  background-color: var(--title-color-bg);
   color:            var(--title-color);
 }
 

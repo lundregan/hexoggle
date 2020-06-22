@@ -5,8 +5,12 @@
       <h1 class='title'>Hexoggle</h1>
 
       <span class='viewing-mode' v-on:click='darkMode = !darkMode'>
-        <span class='dark-mode-icon' v-if='this.darkMode'>🌑</span>
-        <span class='light-mode-icon' v-if='!this.darkMode'>🌕</span>
+        <span class='dark-mode-icon' v-if='this.darkMode'>
+          🌑 Dark Mode 🌑
+          </span>
+        <span class='light-mode-icon' v-if='!this.darkMode'>
+          🌕 Light Mode 🌕
+          </span>
       </span>
     </div>
     <div id="game" style='display: flex;'>
@@ -857,6 +861,14 @@ html {
   text-align: left;
 
   color:            var(--title-color);
+}
+
+.viewing-mode {
+  padding: 25px;
+
+  font-size: 16px;
+
+  color: var(--title-color)
 }
 
 /* Level Select Menu */

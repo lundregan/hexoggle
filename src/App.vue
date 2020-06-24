@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-on:keydown.left="key()">
+  <div id="app" v-on:keydown.left="key()" v-bind:class='{darkMode: this.darkMode, lightMode: !this.darkMode}'>
 
     <div class='title-section'>
       <h1 class='title'>Hexoggle</h1>
@@ -806,9 +806,11 @@ export default {
 }
 
 * {
-  margin: 0;
+  margin: 0
+}
 
-  /* CSS Variables */
+.darkMode {
+  /* CSS Variables for Dark Mode */
 
   --app-color-bg: #474747;
   --app-color-primary-text: #FF7A00;
@@ -829,6 +831,30 @@ export default {
 
   --button-color-bg: #2b2b2b;
   --button-reset-text-color: #e20b00;
+}
+
+.lightMode {
+  /* CSS Variables for Light Mode */
+
+  --app-color-bg: #e6e6e6;
+  --app-color-primary-text: #000000;
+
+  --title-color-bg: #c22480;
+  --title-color: #000000;
+
+  --level-color-bg: #ff0095;
+  --level-selectTitle-color: #FFFFFF;
+  --level-complete-color: green;
+  --level-notComplete-color: #FA4E5D;
+
+  --world-color-bg: #3a3a3a;
+  --world-color: #FFFFFF;
+
+  --hex-toggled-color: green;
+  --hex-notToggled-color: red;
+
+  --button-color-bg: #cc007e;
+  --button-reset-text-color: #000000;
 }
 
 html {
